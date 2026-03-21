@@ -1,0 +1,130 @@
+# =============================================================================
+# Glitch Reality AI — Main Configuration
+# =============================================================================
+# To switch to paid APIs: change provider in each section and add new secrets.
+# See README.md → "Upgrading to Paid APIs" for step-by-step instructions.
+
+channel:
+  name: "GlitchRealityAI"
+  niche: "Glitch in Reality / Simulation Glitches / Surreal Absurd Moments"
+  language: "en"
+  daily_videos: 4          # how many Shorts to produce per run (3–5)
+  video_duration_min: 5    # seconds
+  video_duration_max: 12   # seconds
+
+# -----------------------------------------------------------------------------
+# Video generation — providers listed in priority order (first = preferred)
+# -----------------------------------------------------------------------------
+video:
+  provider: "huggingface"   # options: huggingface | kling | runway | pika
+  resolution: "576x1024"    # 9:16 vertical (Wan native)
+  fps: 16
+  num_frames: 81            # ~5 s at 16 fps
+
+  huggingface:
+    spaces:
+      # Each entry: {url, api_path, timeout_sec}
+      - url: "https://wanai-wan2-1-t2v-14b.hf.space"
+        api_path: "/run/predict"
+        timeout: 300
+      - url: "https://zai-org-cogvideox-5b.hf.space"
+        api_path: "/run/predict"
+        timeout: 300
+      - url: "https://tencent-hunyuanvideo.hf.space"
+        api_path: "/run/predict"
+        timeout: 360
+    retry_attempts: 3
+    retry_sleep_min: 30   # seconds between retries
+    retry_sleep_max: 120
+
+  # --- PAID UPGRADE (uncomment + set secrets when ready) ---
+  # kling:
+  #   provider: "kling"
+  #   model: "kling-v1-5"
+  #   api_key_secret: "KLING_API_KEY"
+  # runway:
+  #   provider: "runway"
+  #   model: "gen3a_turbo"
+  #   api_key_secret: "RUNWAY_API_KEY"
+
+# -----------------------------------------------------------------------------
+# Text-to-Speech
+# -----------------------------------------------------------------------------
+tts:
+  provider: "edge-tts"      # options: edge-tts | elevenlabs | openai
+  voices:
+    - "en-US-GuyNeural"     # deep male — primary
+    - "en-US-ChristopherNeural"
+    - "en-US-EricNeural"
+    - "en-US-JennyNeural"   # female fallback
+  speed: "+10%"             # slightly faster for brainrot energy
+  pitch: "+0Hz"
+
+  # --- PAID UPGRADE ---
+  # elevenlabs:
+  #   provider: "elevenlabs"
+  #   voice_id: "YOUR_VOICE_ID"
+  #   model: "eleven_turbo_v2"
+  #   api_key_secret: "ELEVENLABS_API_KEY"
+
+# -----------------------------------------------------------------------------
+# Montage / FFmpeg
+# -----------------------------------------------------------------------------
+montage:
+  font: "assets/fonts/Impact.ttf"
+  subtitle_style:
+    fontsize: 56
+    fontcolor: "white"
+    outline_color: "black"
+    outline_width: 3
+    position: "bottom"       # top | center | bottom
+  glitch_overlay: true       # apply RGB shift glitch effect via ffmpeg
+  music_volume: 0.15         # background music relative to TTS (0.0 – 1.0)
+  music_dir: "assets/music"
+
+# -----------------------------------------------------------------------------
+# YouTube upload
+# -----------------------------------------------------------------------------
+youtube:
+  category_id: "22"          # People & Blogs (works well for Shorts)
+  privacy_status: "private"   # public | unlisted | private
+  made_for_kids: false
+  default_tags:
+    - "shorts"
+    - "glitch"
+    - "realityglitch"
+    - "simulationglitch"
+    - "glitcheffect"
+    - "surreal"
+    - "mindblowing"
+    - "wtf"
+    - "brainrot"
+    - "aiglitch"
+    - "glitchinthematrix"
+    - "simulationtheory"
+    - "realitybreaking"
+    - "glitchyoutube"
+    - "aiart"
+    - "weirdvideo"
+    - "glitchvideo"
+    - "surrealart"
+    - "mindblowingmoments"
+    - "youtubeshortsglitch"
+
+# -----------------------------------------------------------------------------
+# Prompt generation (free AI APIs for new ideas)
+# -----------------------------------------------------------------------------
+prompts:
+  ideas_file: "prompts/ideas.json"
+  daily_count: 10            # how many new ideas to generate per day
+  ai_provider: "gemini"      # options: gemini | grok | openai | none
+  gemini:
+    model: "gemini-1.5-flash"
+    api_key_secret: "GEMINI_API_KEY"
+
+# -----------------------------------------------------------------------------
+# Notifications / error reporting (optional)
+# -----------------------------------------------------------------------------
+notifications:
+  github_issue_on_failure: true
+  github_issue_label: "auto-error"

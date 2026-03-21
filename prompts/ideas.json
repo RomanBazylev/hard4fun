@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "Glitch Reality AI — prompt database",
+    "last_updated": "2026-01-01",
+    "character": "a generic humanoid figure in everyday scenarios"
+  },
+
+  "style_suffixes": [
+    "glitch effect, RGB color shift, reality breaking apart",
+    "simulation error overlay, digital artifacts, pixel corruption",
+    "time loop glitch, stuttering motion, déjà vu distortion",
+    "gravity inversion, physics malfunction, floating debris",
+    "morphing objects, liquid geometry, reality texture tearing",
+    "mirror world glitch, duplicate reflections, clone artifacts",
+    "color drain then oversaturate, reality desaturating then exploding",
+    "object phasing through surfaces, ghost trail, afterimage glitch",
+    "zoom glitch, sudden jump cut, reality zoom-in distortion",
+    "sky and ground swapping, horizon flip, upside-down world"
+  ],
+
+  "themes": {
+    "everyday_glitches": [
+      {
+        "id": "eg_001",
+        "hook": "When your coffee pours upward instead of down",
+        "visual_prompt": "a cup of coffee pouring upward defying gravity in a kitchen, liquid floating up, glitch effect, RGB color shift, surreal simulation error, vertical 9:16",
+        "voice_line": "Wait... did the simulation just forget how gravity works?"
+      },
+      {
+        "id": "eg_002",
+        "hook": "The moment the sky loads the wrong texture",
+        "visual_prompt": "outdoor scene where the sky has wrong texture like a video game loading error, pixelated clouds, digital artifacts, simulation glitch, vertical 9:16",
+        "voice_line": "Someone in the control room pressed the wrong button."
+      },
+      {
+        "id": "eg_003",
+        "hook": "When shadows move the wrong direction",
+        "visual_prompt": "person walking on a sunny street but shadow moves independently in wrong direction, uncanny glitch, reality error, simulation artifact, vertical 9:16",
+        "voice_line": "Your shadow just got its own free will. That's a glitch."
+      },
+      {
+        "id": "eg_004",
+        "hook": "Mirror shows a version of you from 5 seconds in the future",
+        "visual_prompt": "person standing in front of a bathroom mirror, mirror reflection shows them doing something 5 seconds ahead, time glitch, surreal, vertical 9:16",
+        "voice_line": "What if mirrors are actually 5 seconds ahead of reality?"
+      },
+      {
+        "id": "eg_005",
+        "hook": "The moment your reflection blinks at the wrong time",
+        "visual_prompt": "close-up of a face looking in a mirror, the reflection blinks slightly off-sync, uncanny glitch effect, eerie simulation error, vertical 9:16",
+        "voice_line": "It blinked first. That's not how mirrors work."
+      }
+    ],
+
+    "nature_glitches": [
+      {
+        "id": "ng_001",
+        "hook": "Tree growing in reverse at 1000x speed",
+        "visual_prompt": "a tree rapidly un-growing, leaves flying back onto branches, wood compressing back into seed, reverse time lapse, glitch effect, simulation rewind, vertical 9:16",
+        "voice_line": "The simulation hit Ctrl+Z on that tree."
+      },
+      {
+        "id": "ng_002",
+        "hook": "Ocean decides it's tired and just stops moving",
+        "visual_prompt": "vast ocean where all waves suddenly freeze completely still, perfectly flat glass-like water, eerie silence, reality error, simulation pause, vertical 9:16",
+        "voice_line": "Someone paused the ocean. Update in progress."
+      },
+      {
+        "id": "ng_003",
+        "hook": "Rain falls upward but only in one spot",
+        "visual_prompt": "rain falling upward in a single column in a park, surrounding area normal, localized gravity anomaly, glitch in reality, surreal, vertical 9:16",
+        "voice_line": "Local gravity patch. The devs are still working on it."
+      },
+      {
+        "id": "ng_004",
+        "hook": "A flock of birds frozen mid-flight",
+        "visual_prompt": "dozens of birds frozen mid-flight in a blue sky, perfectly still, time stopped, glitch effect, simulation pause, eerie photo-real, vertical 9:16",
+        "voice_line": "Someone hit pause at exactly the wrong moment."
+      }
+    ],
+
+    "physics_glitches": [
+      {
+        "id": "ph_001",
+        "hook": "Fire burns cold and ice melts upward",
+        "visual_prompt": "candle flame that is cold blue and freezing objects near it while an ice cube melts upward into steam, inverted physics, reality error, glitch, vertical 9:16",
+        "voice_line": "Hot and cold just swapped. Classic simulation day."
+      },
+      {
+        "id": "ph_002",
+        "hook": "Car drives fine but its wheels are spinning the wrong way",
+        "visual_prompt": "car driving forward on a road but wheels spinning backwards, uncanny motion glitch, reality error, surreal CGI quality, vertical 9:16",
+        "voice_line": "The physics engine is running but not fully synchronized."
+      },
+      {
+        "id": "ph_003",
+        "hook": "Stack of books floating one inch above the table forever",
+        "visual_prompt": "stack of old books levitating exactly one inch above a wooden table, no explanation, slight digital artifact glow underneath, reality glitch, vertical 9:16",
+        "voice_line": "Gravity exemption granted. No reason given."
+      }
+    ],
+
+    "human_glitches": [
+      {
+        "id": "hu_001",
+        "hook": "Your clone walks past you going the opposite direction",
+        "visual_prompt": "person walking down a street, identical clone of them walking in the opposite direction, both wearing same clothes, reality duplication glitch, vertical 9:16",
+        "voice_line": "Did the renderer just spawn a duplicate NPC?"
+      },
+      {
+        "id": "hu_002",
+        "hook": "Everyone in the cafe freezes except you",
+        "visual_prompt": "busy cafe where every single person is frozen mid-action, coffee cups in mid-air, one person standing normally looking around confused, simulation pause, vertical 9:16",
+        "voice_line": "You've been excluded from the update. Lucky you."
+      },
+      {
+        "id": "hu_003",
+        "hook": "Your hands phase through the keyboard",
+        "visual_prompt": "close-up of hands typing on a laptop keyboard, fingers occasionally phasing through the keys, ghost hands, simulation collision error, digital artifact, vertical 9:16",
+        "voice_line": "Collision detection failed. Relogging won't fix this."
+      }
+    ],
+
+    "cosmic_glitches": [
+      {
+        "id": "co_001",
+        "hook": "The moon renders at low resolution tonight",
+        "visual_prompt": "nighttime sky with the moon appearing in extremely low pixel resolution like a video game asset, everything else normal quality, LOD glitch, simulation error, vertical 9:16",
+        "voice_line": "They forgot to load the high-res moon texture."
+      },
+      {
+        "id": "co_002",
+        "hook": "Sun rises twice in one morning",
+        "visual_prompt": "time-lapse of sunrise, sun rises normally, then RESETS back below horizon and rises again, simulation rewind glitch, reality error, surreal sky, vertical 9:16",
+        "voice_line": "Morning.exe crashed and restarted."
+      },
+      {
+        "id": "co_003",
+        "hook": "Stars form perfect geometric shapes at 3am",
+        "visual_prompt": "nighttime sky where stars slowly align into perfect geometric patterns, triangles hexagons forming in the stars, reality code visible, simulation geometry, vertical 9:16",
+        "voice_line": "The source code is showing through. Zoom in."
+      }
+    ]
+  },
+
+  "voice_line_templates": [
+    "Wait... did the simulation just {action}?",
+    "Someone in the control room {action}.",
+    "The simulation hit {key_combo} on {object}.",
+    "The devs are still working on {issue}.",
+    "{object} just got {ability}. That's a glitch.",
+    "Classic simulation day. {observation}.",
+    "{system}.exe crashed and restarted.",
+    "Someone forgot to load the {asset} texture.",
+    "Collision detection failed. {consequence}.",
+    "The physics engine is running but not fully {sync_state}."
+  ],
+
+  "random_details": [
+    "at sunset with golden light",
+    "in a busy city street",
+    "in an empty white room",
+    "in slow motion",
+    "from a bird's eye view",
+    "with dust particles floating",
+    "with dramatic fog",
+    "in hyper-realistic CGI style",
+    "photorealistic, 8K quality",
+    "cinematic lighting",
+    "with visible digital noise",
+    "with chromatic aberration",
+    "with scanlines overlay",
+    "with hexadecimal code floating in background"
+  ]
+}

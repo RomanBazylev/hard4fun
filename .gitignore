@@ -1,0 +1,69 @@
+# =============================================================================
+# GlitchRealityAI — .gitignore
+# =============================================================================
+
+# Secrets — NEVER commit these
+config/secrets.yaml
+*.env
+.env.*
+*.secret
+
+# Generated outputs (large files)
+*.mp4
+*.mp3
+*.wav
+*.avi
+
+# Thumbnails (re-generated each run)
+*.jpg
+*.jpeg
+*.png
+!assets/**/*.jpg
+!assets/**/*.png
+
+# Logs (committed selectively — only used_prompts.json)
+logs/*.log
+logs/results_*.json
+# But keep used_prompts.json (tracked to avoid reuse)
+!logs/used_prompts.json
+!logs/.gitkeep
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Build / packaging
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/

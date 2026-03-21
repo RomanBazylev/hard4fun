@@ -1,0 +1,184 @@
+# =============================================================================
+# .github/workflows/daily-shorts.yml
+# GlitchRealityAI — Daily YouTube Shorts Pipeline
+# =============================================================================
+# Runs:
+#   - Automatically at midnight UTC every day (cron)
+#   - Manually from the Actions tab (workflow_dispatch) with optional overrides
+#
+# Secrets required (Settings → Secrets and variables → Actions):
+#   YOUTUBE_CLIENT_ID
+#   YOUTUBE_CLIENT_SECRET
+#   YOUTUBE_REFRESH_TOKEN
+#   GEMINI_API_KEY          (optional — for AI idea generation)
+#   HF_TOKEN                (optional — increases HF rate limits)
+#   GITHUB_TOKEN            (auto-provided by Actions)
+# =============================================================================
+
+name: Daily Shorts Pipeline
+
+on:
+  schedule:
+    # Primary run: midnight UTC every day
+    - cron: "0 0 * * *"
+    # Second run: 14:00 UTC (for timezone diversity)
+    - cron: "0 14 * * *"
+  workflow_dispatch:
+    inputs:
+      video_count:
+        description: "Number of Shorts to produce (1–5)"
+        required: false
+        default: "4"
+        type: choice
+        options: ["1", "2", "3", "4", "5"]
+      dry_run:
+        description: "Dry run (no YouTube upload)"
+        required: false
+        default: false
+        type: boolean
+      refresh_ideas:
+        description: "Generate new ideas via Gemini before running"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  generate-and-upload:
+    name: Generate & Upload ${{ inputs.video_count || '4' }} Shorts
+    runs-on: ubuntu-latest
+    timeout-minutes: 120  # 2 hour cap
+
+    steps:
+      # ------------------------------------------------------------------
+      # Setup
+      # ------------------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # We'll commit updated prompts/logs at the end
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version | head -1
+
+      - name: Download Impact font (for subtitles/thumbnails)
+        run: |
+          mkdir -p assets/fonts
+          # Try to find a system bold font, fallback to DejaVu
+          if fc-list | grep -i "impact" | head -1; then
+            fc-list | grep -i "impact" | head -1 | awk -F: '{print $1}' | xargs -I{} cp {} assets/fonts/Impact.ttf 2>/dev/null || true
+          fi
+          # Fallback: use DejaVuSans-Bold as Impact substitute
+          if [ ! -f assets/fonts/Impact.ttf ]; then
+            cp /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf assets/fonts/Impact.ttf 2>/dev/null || \
+            find /usr/share/fonts -name "*Bold*" -type f | head -1 | xargs -I{} cp {} assets/fonts/Impact.ttf || \
+            echo "No bold font found — ffmpeg will use built-in"
+          fi
+          ls -la assets/fonts/ || true
+
+      # ------------------------------------------------------------------
+      # Validate secrets
+      # ------------------------------------------------------------------
+      - name: Validate required secrets
+        env:
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+        run: |
+          python - <<'EOF'
+          import os, sys
+          required = ["YOUTUBE_CLIENT_ID", "YOUTUBE_CLIENT_SECRET", "YOUTUBE_REFRESH_TOKEN"]
+          missing = [k for k in required if not os.getenv(k)]
+          if missing:
+              print(f"❌ Missing secrets: {missing}")
+              print("Add them at: Settings → Secrets and variables → Actions")
+              sys.exit(1)
+          print("✓ All required secrets present.")
+          EOF
+
+      # ------------------------------------------------------------------
+      # Run pipeline
+      # ------------------------------------------------------------------
+      - name: Run GlitchRealityAI pipeline
+        env:
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO: ${{ github.repository }}
+          # Paid API keys (empty on free tier)
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          KLING_API_KEY: ${{ secrets.KLING_API_KEY }}
+          RUNWAY_API_KEY: ${{ secrets.RUNWAY_API_KEY }}
+        run: |
+          EXTRA_FLAGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            EXTRA_FLAGS="$EXTRA_FLAGS --dry-run"
+          fi
+          if [ "${{ inputs.refresh_ideas }}" = "true" ]; then
+            EXTRA_FLAGS="$EXTRA_FLAGS --refresh-ideas"
+          fi
+          python pipeline.py \
+            --count ${{ inputs.video_count || '4' }} \
+            $EXTRA_FLAGS
+
+      # ------------------------------------------------------------------
+      # Persist results
+      # ------------------------------------------------------------------
+      - name: Upload logs as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-logs-${{ github.run_id }}
+          path: logs/
+          retention-days: 30
+
+      - name: Commit updated prompts database
+        if: success()
+        run: |
+          git config user.name "GlitchRealityAI Bot"
+          git config user.email "bot@glitchrealityai"
+          git add prompts/ideas.json logs/used_prompts.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "chore: update prompts + used log [skip ci]"
+          git push || true  # Don't fail the job if push fails
+
+      # ------------------------------------------------------------------
+      # Notify on failure
+      # ------------------------------------------------------------------
+      - name: Comment on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'auto-error',
+              state: 'open',
+              per_page: 1,
+            });
+            if (issues.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `Pipeline failure: ${new Date().toISOString().split('T')[0]}`,
+                body: `## Pipeline run failed\n\nRun: [${context.runId}](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})\n\nCheck the logs for details.`,
+                labels: ['auto-error'],
+              });
+            }
