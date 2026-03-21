@@ -77,7 +77,7 @@ tts:
 montage:
   font: "assets/fonts/Impact.ttf"
   subtitle_style:
-    fontsize: 56
+    fontsize: 48
     fontcolor: "white"
     outline_color: "black"
     outline_width: 3

@@ -139,20 +139,21 @@ def build_subtitle_filter(
     """
     Build an ffmpeg drawtext filter string for subtitles.
     Shows text with a white/black outline, centred horizontally,
-    positioned at the bottom third of the frame.
+    positioned in the bottom safe zone of a 1080×1920 frame.
     """
     style = config["montage"]["subtitle_style"]
-    fontsize = style.get("fontsize", 56)
+    fontsize = style.get("fontsize", 48)
     fontcolor = style.get("fontcolor", "white")
     outline_color = style.get("outline_color", "black")
     outline_w = style.get("outline_width", 3)
 
-    # Wrap long text at word boundaries (max ~35 chars per line)
+    # Wrap text at ~28 chars/line to stay within 1080px with fontsize 48
+    max_chars = 28
     words = text.split()
     lines: list[str] = []
     current = ""
     for word in words:
-        if len(current) + len(word) + 1 > 35:
+        if len(current) + len(word) + 1 > max_chars:
             lines.append(current.strip())
             current = word + " "
         else:
@@ -160,8 +161,15 @@ def build_subtitle_filter(
     if current.strip():
         lines.append(current.strip())
 
+    # Limit to 3 lines max to prevent overflow
+    if len(lines) > 3:
+        lines = lines[:3]
+        lines[-1] = lines[-1][:max_chars - 1] + "…"
+
     escaped_text = "\n".join(_escape_drawtext(line) for line in lines)
 
+    # Position: centre horizontally, ~70% down the screen (safe for Shorts UI)
+    # y = 70% of height minus text height, clamped so it never goes off-screen
     return (
         f"drawtext=text='{escaped_text}'"
         f":fontfile='{font_path}'"
@@ -170,7 +178,7 @@ def build_subtitle_filter(
         f":bordercolor={outline_color}"
         f":borderw={outline_w}"
         f":x=(w-text_w)/2"
-        f":y=h-text_h-60"
+        f":y=min(h*0.70\, h-text_h-40)"
         f":enable='between(t,0,{video_duration})'"
     )
 
@@ -237,8 +245,12 @@ def assemble_short(
     # Probe durations
     vid_dur = get_duration(video_path) or 10.0
     aud_dur = get_duration(audio_path) or 5.0
-    target_dur = max(vid_dur, aud_dur)
-    target_dur = min(target_dur, config["channel"]["video_duration_max"])
+
+    # For Shorts: video length = audio + small padding (not silent 12s video)
+    dur_min = config["channel"].get("video_duration_min", 5)
+    dur_max = config["channel"].get("video_duration_max", 12)
+    target_dur = max(aud_dur + 1.5, dur_min)  # audio + 1.5s breathing room
+    target_dur = min(target_dur, dur_max)
 
     log.info("Assembling: video=%.1fs audio=%.1fs target=%.1fs", vid_dur, aud_dur, target_dur)
 
@@ -251,14 +263,20 @@ def assemble_short(
         tmp = Path(tmp_dir)
 
         # Step 1: Scale + pad to 1080×1920 (9:16)
+        # If stock clip is shorter than target, loop it; if longer, trim it
         scaled = tmp / "scaled.mp4"
         scale_filter = (
             "scale=1080:1920:force_original_aspect_ratio=decrease,"
             "pad=1080:1920:(ow-iw)/2:(oh-ih)/2:black"
         )
+        input_args = ["-y"]
+        if vid_dur < target_dur:
+            # Loop the stock clip to cover the target duration
+            input_args += ["-stream_loop", "-1"]
+        input_args += ["-i", str(video_path)]
         ok = run_ffmpeg(
             [
-                "ffmpeg", "-y", "-i", str(video_path),
+                "ffmpeg", *input_args,
                 "-vf", scale_filter,
                 "-t", str(target_dur),
                 "-c:v", "libx264", "-preset", "fast", "-crf", "22",
