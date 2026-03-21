@@ -169,7 +169,7 @@ def generate_ai_ideas(count: int = 5, api_key: str | None = None) -> list[dict[s
 
     url = (
         "https://generativelanguage.googleapis.com/v1beta/models/"
-        "gemini-1.5-flash:generateContent"
+        "gemini-2.0-flash:generateContent"
     )
     payload = {
         "contents": [

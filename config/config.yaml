@@ -119,7 +119,7 @@ prompts:
   daily_count: 10            # how many new ideas to generate per day
   ai_provider: "gemini"      # options: gemini | grok | openai | none
   gemini:
-    model: "gemini-1.5-flash"
+    model: "gemini-2.0-flash"
     api_key_secret: "GEMINI_API_KEY"
 
 # -----------------------------------------------------------------------------
