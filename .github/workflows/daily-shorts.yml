@@ -12,6 +12,7 @@
 #   YOUTUBE_REFRESH_TOKEN
 #   GEMINI_API_KEY          (optional — for AI idea generation)
 #   HF_TOKEN                (optional — increases HF rate limits)
+#   PEXELS_API_KEY          (recommended — Pexels stock footage fallback)
 #   GITHUB_TOKEN            (auto-provided by Actions)
 # =============================================================================
 
@@ -127,6 +128,7 @@ jobs:
           YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
           YOUTUBE_PRIVACY: ${{ secrets.YOUTUBE_PRIVACY }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPO: ${{ github.repository }}

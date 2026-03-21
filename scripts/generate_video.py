@@ -4,13 +4,17 @@ generate_video.py
 Video generation module for GlitchRealityAI.
 
 Supports:
-  - Hugging Face Gradio Spaces (primary, free)
-  - Kling API (paid upgrade)
+  - Hugging Face Gradio Spaces (primary, free — unreliable)
+  - Pexels stock footage   (fallback, free — reliable)
+  - Kling API  (paid upgrade)
   - Runway API (paid upgrade)
 
 Design principle: every paid upgrade is a one-function swap.
 To upgrade, set `video.provider` in config.yaml to the desired provider
 and add the corresponding API key to GitHub Secrets.
+
+Fallback: set `video.fallback_provider` to automatically try another
+provider if the primary fails (e.g. huggingface → pexels).
 
 Usage:
     python scripts/generate_video.py --prompt "..." --output /tmp/video.mp4
@@ -20,6 +24,7 @@ from __future__ import annotations
 import logging
 import os
 import random
+import re
 import time
 from pathlib import Path
 from typing import Any
@@ -48,69 +53,97 @@ def load_config() -> dict[str, Any]:
 
 
 # ---------------------------------------------------------------------------
-# Hugging Face Gradio — free tier
+# Hugging Face Gradio — free tier (using gradio_client for Gradio v4+)
 # ---------------------------------------------------------------------------
 
-def _gradio_predict(
-    space_url: str,
-    api_path: str,
+def _gradio_generate(
+    space_id: str,
     prompt: str,
-    num_frames: int,
-    fps: int,
-    resolution: str,
     timeout: int,
     hf_token: str | None,
 ) -> bytes | None:
     """
-    Call a HuggingFace Gradio Space via the /run/predict or /api/predict endpoint.
+    Call a HuggingFace Gradio Space via gradio_client.
     Returns raw video bytes on success, None on failure.
     """
-    width, height = (int(x) for x in resolution.split("x"))
-    endpoint = f"{space_url.rstrip('/')}{api_path}"
-
-    payload = {
-        "data": [
-            prompt,
-            num_frames,
-            fps,
-            width,
-            height,
-            42,   # seed — randomised below
-        ]
-    }
-    payload["data"][-1] = random.randint(0, 2**31)  # random seed for variety
-
-    headers: dict[str, str] = {"Content-Type": "application/json"}
-    if hf_token:
-        headers["Authorization"] = f"Bearer {hf_token}"
-
-    log.info("POST %s (timeout=%ds)", endpoint, timeout)
     try:
-        resp = requests.post(endpoint, json=payload, headers=headers, timeout=timeout)
-        resp.raise_for_status()
-        data = resp.json()
-
-        # Gradio returns {"data": [{"path": "...", "url": "..."}]} or similar
-        result = data.get("data", [{}])[0]
-
-        # Some Spaces return a URL, others return base64
-        if isinstance(result, dict):
-            video_url = result.get("url") or result.get("path")
-            if video_url:
-                log.info("Downloading video from %s", video_url)
-                video_resp = requests.get(video_url, timeout=120, headers=headers)
-                video_resp.raise_for_status()
-                return video_resp.content
-        elif isinstance(result, str) and result.startswith("http"):
-            video_resp = requests.get(result, timeout=120)
-            video_resp.raise_for_status()
-            return video_resp.content
-
-        log.warning("Unexpected Gradio response structure: %s", str(data)[:200])
+        from gradio_client import Client
+    except ImportError:
+        log.error("gradio_client not installed. Run: pip install gradio-client")
         return None
 
-    except requests.RequestException as exc:
-        log.error("Gradio request failed: %s", exc)
+    try:
+        log.info("Connecting to Space: %s (timeout=%ds)", space_id, timeout)
+        client = Client(space_id, hf_token=hf_token)
+
+        # Most video gen spaces accept: prompt, negative_prompt, seed, steps, etc.
+        # We try the most common API patterns
+        seed = random.randint(0, 2**31)
+
+        # Attempt: standard text-to-video predict
+        result = client.predict(
+            prompt,
+            api_name="/generate",  # most common endpoint name
+        )
+
+        # result is typically a file path or dict with file path
+        if isinstance(result, str) and os.path.isfile(result):
+            with open(result, "rb") as f:
+                return f.read()
+        elif isinstance(result, dict):
+            video_path = result.get("video") or result.get("value") or result.get("path")
+            if video_path and os.path.isfile(str(video_path)):
+                with open(str(video_path), "rb") as f:
+                    return f.read()
+        elif isinstance(result, tuple):
+            # Some spaces return (video_path, ...) tuple
+            for item in result:
+                if isinstance(item, str) and os.path.isfile(item):
+                    with open(item, "rb") as f:
+                        return f.read()
+
+        log.warning("Unexpected result type from Space: %s — %s", space_id, type(result))
+        return None
+
+    except Exception as exc:
+        log.error("gradio_client failed for %s: %s", space_id, exc)
+        return None
+
+
+def _gradio_generate_fallback(
+    space_id: str,
+    prompt: str,
+    timeout: int,
+    hf_token: str | None,
+) -> bytes | None:
+    """
+    Fallback: try /predict or /infer endpoint names.
+    """
+    try:
+        from gradio_client import Client
+        client = Client(space_id, hf_token=hf_token)
+
+        seed = random.randint(0, 2**31)
+
+        # Try common alternative endpoint names
+        for api_name in ["/predict", "/infer", "/run", "/text2video"]:
+            try:
+                result = client.predict(prompt, api_name=api_name)
+                if isinstance(result, str) and os.path.isfile(result):
+                    with open(result, "rb") as f:
+                        return f.read()
+                if isinstance(result, tuple):
+                    for item in result:
+                        if isinstance(item, str) and os.path.isfile(item):
+                            with open(item, "rb") as f:
+                                return f.read()
+            except Exception:
+                continue
+
+        return None
+
+    except Exception as exc:
+        log.error("gradio_client fallback failed for %s: %s", space_id, exc)
         return None
 
 
@@ -121,6 +154,7 @@ def generate_video_huggingface(
 ) -> bool:
     """
     Try each configured HF Space in order until one succeeds.
+    Uses gradio_client for proper Gradio v4+ API compatibility.
     Retries each Space up to `retry_attempts` times with exponential sleep.
 
     Returns True on success, False if all spaces fail.
@@ -132,27 +166,16 @@ def generate_video_huggingface(
     sleep_max: int = hf_cfg.get("retry_sleep_max", 120)
     hf_token: str | None = os.getenv("HF_TOKEN")
 
-    num_frames = config["video"]["num_frames"]
-    fps = config["video"]["fps"]
-    resolution = config["video"]["resolution"]
-
     for space in spaces:
-        url = space["url"]
-        api_path = space.get("api_path", "/run/predict")
+        space_id = space["space_id"]
         timeout = space.get("timeout", 300)
 
-        log.info("Trying Space: %s", url)
+        log.info("Trying Space: %s", space_id)
         for attempt in range(1, retry_attempts + 1):
-            video_bytes = _gradio_predict(
-                space_url=url,
-                api_path=api_path,
-                prompt=prompt,
-                num_frames=num_frames,
-                fps=fps,
-                resolution=resolution,
-                timeout=timeout,
-                hf_token=hf_token,
-            )
+            video_bytes = _gradio_generate(space_id, prompt, timeout, hf_token)
+            if not video_bytes:
+                video_bytes = _gradio_generate_fallback(space_id, prompt, timeout, hf_token)
+
             if video_bytes:
                 output_path.parent.mkdir(parents=True, exist_ok=True)
                 output_path.write_bytes(video_bytes)
@@ -163,13 +186,153 @@ def generate_video_huggingface(
                 sleep_dur = random.randint(sleep_min, sleep_max)
                 log.warning(
                     "Attempt %d/%d failed for %s. Sleeping %ds …",
-                    attempt, retry_attempts, url, sleep_dur,
+                    attempt, retry_attempts, space_id, sleep_dur,
                 )
                 time.sleep(sleep_dur)
 
-        log.error("All %d attempts failed for Space: %s", retry_attempts, url)
+        log.error("All %d attempts failed for Space: %s", retry_attempts, space_id)
 
     log.error("All HuggingFace Spaces exhausted. Video generation failed.")
+    return False
+
+
+# ---------------------------------------------------------------------------
+# Pexels stock footage — free, reliable fallback
+# ---------------------------------------------------------------------------
+
+# Glitch-in-reality themed queries — atmospheric/surreal stock clips that
+# look great with FFmpeg glitch overlay effects applied during montage.
+PEXELS_QUERIES: list[str] = [
+    "surveillance camera footage",
+    "security camera night",
+    "time lapse city street",
+    "urban night neon lights",
+    "foggy forest aerial",
+    "abandoned building interior",
+    "empty corridor dark",
+    "ocean waves slow motion",
+    "underwater light rays",
+    "lightning storm clouds",
+    "subway train moving",
+    "highway traffic night",
+    "rain window reflection",
+    "elevator doors closing",
+    "static television screen",
+    "parking lot security camera",
+    "staircase looking down",
+    "tunnel long perspective",
+    "crowd walking timelapse",
+    "mirror reflection dark",
+    "fluorescent light flickering",
+    "drone aerial landscape",
+    "night sky stars rotating",
+    "street lamp fog",
+    "shadows moving wall",
+]
+
+
+def _extract_search_terms(prompt: str) -> list[str]:
+    """Extract a few short search-friendly terms from a visual prompt."""
+    # Remove common filler words, keep nouns and adjectives
+    stop = {
+        "a", "an", "the", "of", "in", "on", "at", "to", "and", "or", "is",
+        "are", "was", "were", "with", "for", "from", "by", "as", "it", "its",
+        "this", "that", "very", "so", "just", "but", "into", "out", "up", "down",
+        "about", "being", "been", "has", "have", "had", "do", "does", "did",
+        "will", "would", "could", "should", "can", "may", "might", "shall",
+        "like", "looking", "seems", "through", "while", "where", "there",
+    }
+    words = re.findall(r"[a-zA-Z]{3,}", prompt.lower())
+    keywords = [w for w in words if w not in stop]
+    # Build 2-3 word search phrases from the first meaningful words
+    queries: list[str] = []
+    if len(keywords) >= 2:
+        queries.append(f"{keywords[0]} {keywords[1]}")
+    if len(keywords) >= 4:
+        queries.append(f"{keywords[2]} {keywords[3]}")
+    if len(keywords) >= 6:
+        queries.append(f"{keywords[4]} {keywords[5]}")
+    return queries
+
+
+def _pexels_best_file(video_files: list[dict]) -> dict | None:
+    """Pick the best HD file from Pexels video_files list (portrait for Shorts)."""
+    hd = [f for f in video_files if (f.get("height") or 0) >= 720]
+    if hd:
+        return min(hd, key=lambda f: abs((f.get("height") or 0) - 1920))
+    if video_files:
+        return max(video_files, key=lambda f: f.get("height") or 0)
+    return None
+
+
+def generate_video_pexels(
+    prompt: str,
+    config: dict[str, Any],
+    output_path: Path,
+) -> bool:
+    """
+    Download a stock video clip from Pexels that matches the prompt.
+    Falls back to glitch-themed hardcoded queries if prompt search returns nothing.
+    """
+    api_key = os.getenv("PEXELS_API_KEY", "")
+    if not api_key:
+        log.error("PEXELS_API_KEY not set — cannot use Pexels provider.")
+        return False
+
+    headers = {"Authorization": api_key}
+
+    # Build query list: prompt-derived first, then hardcoded fallbacks
+    queries = _extract_search_terms(prompt)
+    base = [q for q in PEXELS_QUERIES if q not in queries]
+    random.shuffle(base)
+    queries.extend(base)
+    queries = queries[:10]  # Try up to 10 queries
+
+    for query in queries:
+        try:
+            resp = requests.get(
+                "https://api.pexels.com/videos/search",
+                headers=headers,
+                params={"query": query, "per_page": 3, "orientation": "portrait"},
+                timeout=30,
+            )
+            if resp.status_code != 200:
+                log.warning("Pexels search failed (%d) for query: %s", resp.status_code, query)
+                continue
+
+            videos = resp.json().get("videos", [])
+            if not videos:
+                continue
+
+            # Pick a random video from the results
+            video = random.choice(videos)
+            best = _pexels_best_file(video.get("video_files", []))
+            if not best or not best.get("link"):
+                continue
+
+            # Download the clip
+            dl = requests.get(best["link"], timeout=120, stream=True)
+            dl.raise_for_status()
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            with output_path.open("wb") as f:
+                for chunk in dl.iter_content(chunk_size=8192):
+                    if chunk:
+                        f.write(chunk)
+
+            log.info(
+                "✓ Pexels clip saved: %s (query=%r, %dx%d)",
+                output_path,
+                query,
+                best.get("width", 0),
+                best.get("height", 0),
+            )
+            return True
+
+        except Exception as exc:
+            log.warning("Pexels query %r failed: %s", query, exc)
+            continue
+
+    log.error("Pexels: no suitable clips found across all queries.")
     return False
 
 
@@ -303,6 +466,7 @@ def generate_video_runway(
 
 PROVIDERS: dict[str, Any] = {
     "huggingface": generate_video_huggingface,
+    "pexels": generate_video_pexels,
     "kling": generate_video_kling,
     "runway": generate_video_runway,
 }
@@ -317,7 +481,8 @@ def generate_video(
     Generate a video from `prompt` and save to `output_path`.
 
     Provider is read from config.yaml → video.provider.
-    Switching providers only requires changing config + adding secrets.
+    If `video.fallback_provider` is set and the primary fails,
+    that provider is tried automatically.
 
     Args:
         prompt:      Text description of the video scene.
@@ -332,12 +497,19 @@ def generate_video(
 
     output_path = Path(output_path)
     provider = config["video"].get("provider", "huggingface")
+    fallback = config["video"].get("fallback_provider", "")
 
     if provider not in PROVIDERS:
         raise ValueError(f"Unknown video provider: '{provider}'. Valid: {list(PROVIDERS)}")
 
     log.info("Video provider: %s | Output: %s", provider, output_path)
-    return PROVIDERS[provider](prompt, config, output_path)
+    ok = PROVIDERS[provider](prompt, config, output_path)
+
+    if not ok and fallback and fallback in PROVIDERS and fallback != provider:
+        log.warning("Primary provider '%s' failed — trying fallback '%s'", provider, fallback)
+        ok = PROVIDERS[fallback](prompt, config, output_path)
+
+    return ok
 
 
 # ---------------------------------------------------------------------------

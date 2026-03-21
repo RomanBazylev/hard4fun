@@ -16,26 +16,30 @@ channel:
 # Video generation — providers listed in priority order (first = preferred)
 # -----------------------------------------------------------------------------
 video:
-  provider: "huggingface"   # options: huggingface | kling | runway | pika
+  provider: "huggingface"   # options: huggingface | pexels | kling | runway
+  fallback_provider: "pexels"  # auto-fallback if primary fails
   resolution: "576x1024"    # 9:16 vertical (Wan native)
   fps: 16
   num_frames: 81            # ~5 s at 16 fps
 
   huggingface:
     spaces:
-      # Each entry: {url, api_path, timeout_sec}
-      - url: "https://wanai-wan2-1-t2v-14b.hf.space"
-        api_path: "/run/predict"
+      # Each entry: {space_id, timeout}  — space_id = "owner/space-name"
+      - space_id: "Wan-AI/Wan2.1-T2V-14B"
         timeout: 300
-      - url: "https://zai-org-cogvideox-5b.hf.space"
-        api_path: "/run/predict"
+      - space_id: "THUDM/CogVideoX-5B-Space"
         timeout: 300
-      - url: "https://tencent-hunyuanvideo.hf.space"
-        api_path: "/run/predict"
-        timeout: 360
+      - space_id: "multimodalart/wan-2.1-fast"
+        timeout: 300
     retry_attempts: 3
     retry_sleep_min: 30   # seconds between retries
     retry_sleep_max: 120
+
+  # Pexels stock footage — free, reliable fallback
+  # Requires PEXELS_API_KEY secret. Clips get glitch effects in montage.
+  pexels:
+    orientation: "portrait"   # portrait for Shorts
+    per_page: 3               # results per query
 
   # --- PAID UPGRADE (uncomment + set secrets when ready) ---
   # kling:
