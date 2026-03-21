@@ -195,6 +195,10 @@ def process_one_video(
         result["video_id"] = video_id
         result["url"] = f"https://youtu.be/{video_id}"
 
+        # Log to analytics
+        from analytics import log_upload
+        log_upload(video_id=video_id, title=hook, topic=prompt.get("theme", ""))
+
         result["status"] = "success"
         log.info("✓ Done: %s → https://youtu.be/%s", pid, result.get("video_id", "N/A"))
 

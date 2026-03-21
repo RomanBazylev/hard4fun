@@ -113,6 +113,13 @@ jobs:
       # ------------------------------------------------------------------
       # Run pipeline
       # ------------------------------------------------------------------
+      - name: Collect video stats
+        env:
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+        run: python -c "from analytics import fetch_and_update_stats, print_report; fetch_and_update_stats(); print_report()"
+
       - name: Run GlitchRealityAI pipeline
         env:
           YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
@@ -151,12 +158,12 @@ jobs:
           retention-days: 30
 
       - name: Commit updated prompts database
-        if: success()
+        if: always()
         run: |
           git config user.name "GlitchRealityAI Bot"
           git config user.email "bot@glitchrealityai"
-          git add prompts/ideas.json logs/used_prompts.json 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "chore: update prompts + used log [skip ci]"
+          git add prompts/ideas.json logs/used_prompts.json performance_log.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "chore: update prompts + analytics [skip ci]"
           git push || true  # Don't fail the job if push fails
 
       # ------------------------------------------------------------------
