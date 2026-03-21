@@ -16,11 +16,23 @@ channel:
 # Video generation — providers listed in priority order (first = preferred)
 # -----------------------------------------------------------------------------
 video:
-  provider: "huggingface"   # options: huggingface | pexels | kling | runway
+  provider: "hf_inference"  # options: hf_inference | huggingface | pexels | kling | runway
   fallback_provider: "pexels"  # auto-fallback if primary fails
   resolution: "576x1024"    # 9:16 vertical (Wan native)
   fps: 16
   num_frames: 81            # ~5 s at 16 fps
+
+  # HF Inference Providers — serverless AI video via fal-ai / Replicate / etc.
+  # Routed through HuggingFace using HF_TOKEN. Free monthly credits.
+  hf_inference:
+    timeout: 300
+    provider_models:
+      - provider: "fal-ai"
+        model: "Wan-AI/Wan2.1-T2V-14B"
+      - provider: "fal-ai"
+        model: "tencent/HunyuanVideo"
+      - provider: "replicate"
+        model: "genmo/mochi-1-preview"
 
   huggingface:
     spaces:

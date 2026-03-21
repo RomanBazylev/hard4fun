@@ -4,7 +4,8 @@ generate_video.py
 Video generation module for GlitchRealityAI.
 
 Supports:
-  - Hugging Face Gradio Spaces (primary, free — unreliable)
+  - HF Inference Providers  (primary, free monthly credits — reliable)
+  - Hugging Face Gradio Spaces (legacy, free — unreliable)
   - Pexels stock footage   (fallback, free — reliable)
   - Kling API  (paid upgrade)
   - Runway API (paid upgrade)
@@ -335,6 +336,81 @@ def generate_video_pexels(
 
 
 # ---------------------------------------------------------------------------
+# HF Inference Providers — free monthly credits, serverless (fal-ai, Replicate…)
+# ---------------------------------------------------------------------------
+
+def generate_video_hf_inference(
+    prompt: str,
+    config: dict[str, Any],
+    output_path: Path,
+) -> bool:
+    """
+    Generate video via HuggingFace Inference Providers (text_to_video).
+
+    Uses InferenceClient routed through HF to serverless providers like
+    fal-ai and Replicate.  Billing goes to the HF account (free monthly
+    credits for HF users).  Tries each configured provider+model combo
+    in order until one succeeds.
+
+    Returns True on success, False if all combos fail.
+    """
+    try:
+        from huggingface_hub import InferenceClient
+    except ImportError:
+        log.error("huggingface_hub not installed. Run: pip install huggingface-hub")
+        return False
+
+    hf_token: str | None = os.getenv("HF_TOKEN")
+    if not hf_token:
+        log.error("HF_TOKEN not set — cannot use HF Inference Providers.")
+        return False
+
+    inf_cfg = config["video"].get("hf_inference", {})
+    combos: list[dict[str, str]] = inf_cfg.get("provider_models", [])
+    timeout: int = inf_cfg.get("timeout", 300)
+
+    if not combos:
+        log.error("No provider_models configured under video.hf_inference.")
+        return False
+
+    for combo in combos:
+        provider = combo["provider"]
+        model_id = combo["model"]
+        log.info(
+            "HF Inference: trying provider=%s model=%s (timeout=%ds)",
+            provider, model_id, timeout,
+        )
+        try:
+            client = InferenceClient(
+                provider=provider,
+                api_key=hf_token,
+                timeout=timeout,
+            )
+            video_bytes: bytes = client.text_to_video(
+                prompt,
+                model=model_id,
+            )
+            if video_bytes:
+                output_path.parent.mkdir(parents=True, exist_ok=True)
+                output_path.write_bytes(video_bytes)
+                log.info(
+                    "✓ HF Inference video saved: %s (%d bytes, provider=%s, model=%s)",
+                    output_path, len(video_bytes), provider, model_id,
+                )
+                return True
+            log.warning("HF Inference returned empty bytes for %s/%s", provider, model_id)
+        except Exception as exc:
+            log.warning(
+                "HF Inference failed for %s/%s: %s",
+                provider, model_id, exc,
+            )
+            continue
+
+    log.error("All HF Inference provider+model combos exhausted.")
+    return False
+
+
+# ---------------------------------------------------------------------------
 # Kling API — paid upgrade
 # ---------------------------------------------------------------------------
 
@@ -463,6 +539,7 @@ def generate_video_runway(
 # ---------------------------------------------------------------------------
 
 PROVIDERS: dict[str, Any] = {
+    "hf_inference": generate_video_hf_inference,
     "huggingface": generate_video_huggingface,
     "pexels": generate_video_pexels,
     "kling": generate_video_kling,

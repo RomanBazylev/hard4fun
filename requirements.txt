@@ -16,7 +16,7 @@ edge-tts>=6.1.12
 anyio>=4.4.0
 
 # Hugging Face (for InferenceClient where needed)
-huggingface-hub>=0.23.4
+huggingface-hub>=0.25.0
 gradio-client>=1.0.0
 
 # Prompt management / utilities
