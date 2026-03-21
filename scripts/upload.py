@@ -181,6 +181,7 @@ def upload_video(
     Returns the YouTube video ID on success, None on failure.
     """
     yt_cfg = config["youtube"]
+    privacy = os.getenv("YOUTUBE_PRIVACY") or yt_cfg.get("privacy_status", "private")
     metadata = {
         "snippet": {
             "title": title,
@@ -190,10 +191,11 @@ def upload_video(
             "defaultLanguage": "en",
         },
         "status": {
-            "privacyStatus": yt_cfg.get("privacy_status", "public"),
+            "privacyStatus": privacy,
             "selfDeclaredMadeForKids": yt_cfg.get("made_for_kids", False),
         },
     }
+    log.info("Upload privacy: %s", privacy)
 
     headers = {
         "Authorization": f"Bearer {access_token}",
