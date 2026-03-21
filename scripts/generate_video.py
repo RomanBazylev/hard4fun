@@ -74,7 +74,7 @@ def _gradio_generate(
 
     try:
         log.info("Connecting to Space: %s (timeout=%ds)", space_id, timeout)
-        client = Client(space_id, hf_token=hf_token)
+        client = Client(space_id, token=hf_token)
 
         # Most video gen spaces accept: prompt, negative_prompt, seed, steps, etc.
         # We try the most common API patterns
@@ -121,9 +121,7 @@ def _gradio_generate_fallback(
     """
     try:
         from gradio_client import Client
-        client = Client(space_id, hf_token=hf_token)
-
-        seed = random.randint(0, 2**31)
+        client = Client(space_id, token=hf_token)
 
         # Try common alternative endpoint names
         for api_name in ["/predict", "/infer", "/run", "/text2video"]:

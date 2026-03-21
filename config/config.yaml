@@ -31,9 +31,9 @@ video:
         timeout: 300
       - space_id: "multimodalart/wan-2.1-fast"
         timeout: 300
-    retry_attempts: 3
-    retry_sleep_min: 30   # seconds between retries
-    retry_sleep_max: 120
+    retry_attempts: 1
+    retry_sleep_min: 5    # seconds between retries
+    retry_sleep_max: 15
 
   # Pexels stock footage — free, reliable fallback
   # Requires PEXELS_API_KEY secret. Clips get glitch effects in montage.
