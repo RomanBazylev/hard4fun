@@ -112,6 +112,7 @@ montage:
   subtitle_style:
     fontsize: 48
     fontcolor: "white"
+    highlight_color: "yellow"  # karaoke highlight for current word
     outline_color: "black"
     outline_width: 3
     position: "bottom"       # top | center | bottom

@@ -99,6 +99,49 @@ def pick_music_track() -> Path | None:
     return picked
 
 
+def ensure_music_available() -> None:
+    """
+    Download a free ambient background track from Pixabay if the
+    assets/music/ directory is empty.
+    """
+    MUSIC_DIR.mkdir(parents=True, exist_ok=True)
+    existing = list(MUSIC_DIR.glob("*.mp3")) + list(MUSIC_DIR.glob("*.wav"))
+    if existing:
+        return
+
+    import requests as _req
+
+    FALLBACK_TRACKS = [
+        {
+            "name": "dark-ambient-background.mp3",
+            "url": "https://cdn.pixabay.com/audio/2022/10/25/audio_340f870a40.mp3",
+        },
+        {
+            "name": "mysterious-ambient.mp3",
+            "url": "https://cdn.pixabay.com/audio/2023/01/16/audio_8a4b726c33.mp3",
+        },
+    ]
+
+    for track in FALLBACK_TRACKS:
+        dest = MUSIC_DIR / track["name"]
+        try:
+            log.info("Downloading background music: %s", track["name"])
+            resp = _req.get(track["url"], timeout=60, stream=True)
+            resp.raise_for_status()
+            with dest.open("wb") as f:
+                for chunk in resp.iter_content(chunk_size=8192):
+                    if chunk:
+                        f.write(chunk)
+            log.info("✓ Music downloaded: %s (%.1f KB)", dest, dest.stat().st_size / 1024)
+            return  # one track is enough
+        except Exception as exc:
+            log.warning("Failed to download music %s: %s", track["name"], exc)
+            dest.unlink(missing_ok=True)
+            continue
+
+    log.warning("Could not download any background music — continuing without it.")
+
+
 def resolve_font(config: dict[str, Any]) -> str:
     """Return the font path string for ffmpeg drawtext filter."""
     font_path = Path(config["montage"].get("font", str(FONT_DEFAULT)))
@@ -130,24 +173,149 @@ def _escape_drawtext(text: str) -> str:
     return text
 
 
+def _load_word_timings(audio_path: Path) -> list[dict] | None:
+    """Load word timings from the .words.json sidecar file."""
+    timings_path = audio_path.with_suffix(".words.json")
+    if not timings_path.exists():
+        return None
+    try:
+        import json as _json
+        with timings_path.open(encoding="utf-8") as f:
+            return _json.load(f)
+    except Exception:
+        return None
+
+
 def build_subtitle_filter(
     text: str,
     config: dict[str, Any],
     font_path: str,
     video_duration: float,
+    audio_path: Path | None = None,
 ) -> str:
     """
-    Build an ffmpeg drawtext filter string for subtitles.
-    Shows text with a white/black outline, centred horizontally,
-    positioned in the bottom safe zone of a 1080×1920 frame.
+    Build karaoke-style subtitles if word timings are available,
+    otherwise fall back to static full-text subtitles.
     """
     style = config["montage"]["subtitle_style"]
     fontsize = style.get("fontsize", 48)
     fontcolor = style.get("fontcolor", "white")
+    highlight_color = style.get("highlight_color", "yellow")
     outline_color = style.get("outline_color", "black")
     outline_w = style.get("outline_width", 3)
 
-    # Wrap text at ~28 chars/line to stay within 1080px with fontsize 48
+    word_timings = _load_word_timings(audio_path) if audio_path else None
+
+    if word_timings and len(word_timings) >= 2:
+        return _build_karaoke_filter(
+            word_timings, fontsize, fontcolor, highlight_color,
+            outline_color, outline_w, font_path, video_duration,
+        )
+
+    return _build_static_subtitle(
+        text, fontsize, fontcolor, outline_color, outline_w,
+        font_path, video_duration,
+    )
+
+
+def _build_karaoke_filter(
+    word_timings: list[dict],
+    fontsize: int,
+    fontcolor: str,
+    highlight_color: str,
+    outline_color: str,
+    outline_w: int,
+    font_path: str,
+    video_duration: float,
+) -> str:
+    """
+    Build karaoke subtitles: show 2-4 words at a time, centred,
+    with the current word highlighted in yellow above.
+    """
+    max_words_per_chunk = 4
+    max_chars = 28
+    chunks: list[list[dict]] = []
+    current_chunk: list[dict] = []
+    current_len = 0
+
+    for wt in word_timings:
+        word_len = len(wt["word"]) + 1
+        too_many = len(current_chunk) >= max_words_per_chunk
+        too_wide = current_len + word_len > max_chars and current_chunk
+
+        if too_many or too_wide:
+            chunks.append(current_chunk)
+            current_chunk = [wt]
+            current_len = word_len
+        else:
+            current_chunk.append(wt)
+            current_len += word_len
+    if current_chunk:
+        chunks.append(current_chunk)
+
+    filters: list[str] = []
+
+    for chunk in chunks:
+        if not chunk:
+            continue
+        chunk_start = chunk[0]["start"]
+        chunk_end = min(chunk[-1]["end"] + 0.2, video_duration)
+
+        # Base layer: full chunk text in semi-transparent white
+        chunk_text = " ".join(w["word"] for w in chunk)
+        escaped_chunk = _escape_drawtext(chunk_text)
+
+        # NOTE: commas inside FFmpeg expressions must be escaped as \\,
+        filters.append(
+            f"drawtext=text='{escaped_chunk}'"
+            f":fontfile='{font_path}'"
+            f":fontsize={fontsize}"
+            f":fontcolor={fontcolor}@0.6"
+            f":bordercolor={outline_color}"
+            f":borderw={outline_w}"
+            f":x=(w-text_w)/2"
+            f":y=min(h*0.70\\, h-text_h-40)"
+            f":enable='between(t\\,{chunk_start:.3f}\\,{chunk_end:.3f})'"
+        )
+
+        # Highlight layer: current word in yellow, slightly larger, above base
+        for wt in chunk:
+            escaped_word = _escape_drawtext(wt["word"])
+            w_start = wt["start"]
+            w_end = min(wt["end"], video_duration)
+
+            filters.append(
+                f"drawtext=text='{escaped_word}'"
+                f":fontfile='{font_path}'"
+                f":fontsize={int(fontsize * 1.15)}"
+                f":fontcolor={highlight_color}"
+                f":bordercolor={outline_color}"
+                f":borderw={outline_w + 1}"
+                f":x=(w-text_w)/2"
+                f":y=min(h*0.70\\, h-text_h-40)-{fontsize + 10}"
+                f":enable='between(t\\,{w_start:.3f}\\,{w_end:.3f})'"
+            )
+
+    if not filters:
+        return _build_static_subtitle(
+            " ".join(w["word"] for w in word_timings),
+            fontsize, fontcolor, outline_color, outline_w,
+            font_path, video_duration,
+        )
+
+    return ",".join(filters)
+
+
+def _build_static_subtitle(
+    text: str,
+    fontsize: int,
+    fontcolor: str,
+    outline_color: str,
+    outline_w: int,
+    font_path: str,
+    video_duration: float,
+) -> str:
+    """Build a static full-text drawtext filter (fallback)."""
     max_chars = 28
     words = text.split()
     lines: list[str] = []
@@ -161,16 +329,12 @@ def build_subtitle_filter(
     if current.strip():
         lines.append(current.strip())
 
-    # Limit to 3 lines max to prevent overflow
     if len(lines) > 3:
         lines = lines[:3]
         lines[-1] = lines[-1][:max_chars - 1] + "…"
 
     escaped_text = "\n".join(_escape_drawtext(line) for line in lines)
 
-    # Position: centre horizontally, ~70% down the screen (safe for Shorts UI)
-    # y = 70% of height minus text height, clamped so it never goes off-screen
-    # NOTE: commas inside FFmpeg expressions must be escaped as \\, in drawtext
     return (
         f"drawtext=text='{escaped_text}'"
         f":fontfile='{font_path}'"
@@ -379,6 +543,9 @@ def assemble_short(
 
     font_path = resolve_font(config)
     music_track = pick_music_track()
+    if music_track is None:
+        ensure_music_available()
+        music_track = pick_music_track()
     glitch_enabled = config["montage"].get("glitch_overlay", True)
     music_vol = config["montage"].get("music_volume", 0.15)
 
@@ -429,9 +596,11 @@ def assemble_short(
         else:
             shutil.copy(scaled, glitched)
 
-        # Step 3: Burn subtitles
+        # Step 3: Burn subtitles (karaoke if word timings available)
         subtitled = tmp / "subtitled.mp4"
-        sub_filter = build_subtitle_filter(voice_text, config, font_path, target_dur)
+        sub_filter = build_subtitle_filter(
+            voice_text, config, font_path, target_dur, audio_path=audio_path,
+        )
         ok = run_ffmpeg(
             [
                 "ffmpeg", "-y", "-i", str(glitched),

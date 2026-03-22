@@ -47,7 +47,7 @@ async def _edge_tts_async(
     rate: str,
     pitch: str,
 ) -> bool:
-    """Async core for edge-tts generation."""
+    """Async core for edge-tts with word-level timing extraction for karaoke."""
     try:
         import edge_tts  # type: ignore[import]
     except ImportError:
@@ -55,10 +55,46 @@ async def _edge_tts_async(
         return False
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    communicate = edge_tts.Communicate(text, voice, rate=rate, pitch=pitch)
+
+    # MUST pass boundary="WordBoundary" — default is SentenceBoundary
+    # which never yields per-word events.
+    communicate = edge_tts.Communicate(
+        text, voice, rate=rate, pitch=pitch, boundary="WordBoundary",
+    )
+
+    word_timings: list[dict] = []
+    audio_chunks: list[bytes] = []
+
     try:
-        await communicate.save(str(output_path))
-        log.info("✓ edge-tts saved: %s (voice=%s)", output_path, voice)
+        async for event in communicate.stream():
+            if event["type"] == "audio":
+                audio_chunks.append(event["data"])
+            elif event["type"] == "WordBoundary":
+                # offset and duration are in 100-nanosecond ticks
+                word_timings.append({
+                    "word": event["text"],
+                    "start": event["offset"] / 10_000_000,
+                    "end": (event["offset"] + event["duration"]) / 10_000_000,
+                })
+
+        # Save audio
+        with output_path.open("wb") as f:
+            for chunk in audio_chunks:
+                f.write(chunk)
+
+        # Save word timings as sidecar JSON (same name, .words.json)
+        if word_timings:
+            import json as _json
+            timings_path = output_path.with_suffix(".words.json")
+            with timings_path.open("w", encoding="utf-8") as f:
+                _json.dump(word_timings, f, ensure_ascii=False, indent=2)
+            log.info(
+                "✓ edge-tts saved: %s (voice=%s, %d word timings)",
+                output_path, voice, len(word_timings),
+            )
+        else:
+            log.info("✓ edge-tts saved: %s (voice=%s, no word timings)", output_path, voice)
+
         return True
     except Exception as exc:  # noqa: BLE001
         log.error("edge-tts failed: %s", exc)
