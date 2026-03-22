@@ -131,29 +131,31 @@ def select_daily_prompts(count: int = 4) -> list[dict[str, Any]]:
 # AI-powered idea generation (Gemini free tier)
 # ---------------------------------------------------------------------------
 
-GEMINI_SYSTEM = """You are a creative director for a viral YouTube Shorts channel called GlitchRealityAI.
-You create "glitch in reality" stories — first-person narratives about impossible things happening in everyday life.
-The style is storytelling: the narrator describes something weird that happened to them, building tension, then ending with a creepy or funny punchline.
-Think of it like a Reddit post from r/Glitch_in_the_Matrix but told as a spoken monologue."""
+GEMINI_SYSTEM = """You are a comedy writer for a viral YouTube Shorts channel called GlitchRealityAI.
+You create "glitch in reality" stories — first-person narratives about hilariously impossible things happening in everyday life.
+The style is comedy storytelling with deadpan delivery: the narrator describes something absurd that happened to them, building up the absurdity, then ending with a hilarious punchline.
+Think of it like a stand-up bit meets r/Glitch_in_the_Matrix — the absurdity IS the joke. The narrator treats insane situations with casual acceptance, which makes it funnier.
+Tone: Gen Z humor, brainrot energy, deadpan comedy. NOT horror or creepy — FUNNY and absurd."""
 
-GEMINI_USER_TEMPLATE = """Generate {count} new YouTube Shorts scripts for the "Glitch in Reality" niche.
+GEMINI_USER_TEMPLATE = """Generate {count} new YouTube Shorts comedy scripts for the "Glitch in Reality" niche.
 
 Return ONLY a valid JSON array (no markdown, no preamble) with this exact schema:
 [
   {{
     "id": "ai_<unique_5digit_number>",
-    "hook": "clickbait-style one-line title, 5-10 words",
+    "hook": "clickbait-style funny one-liner, 5-10 words, Gen Z humor",
     "visual_prompt": "cinematic visual description for AI image generation, vertical 9:16, photorealistic, surreal glitch aesthetic",
-    "voice_line": "A 30-50 second spoken monologue. First-person. Setup: describe a normal situation. Build-up: something impossible starts happening. Escalation: describe the glitch in vivid detail. Punchline: a creepy or funny ending. Make it sound like a real person telling a story, conversational tone.",
+    "voice_line": "A 30-50 second COMEDY monologue. First-person. Setup: describe a normal situation. Build-up: something hilariously impossible starts happening. Escalation: narrator reacts with deadpan acceptance or increasingly absurd observations. Punchline: a genuinely funny ending, not creepy. The humor comes from treating insane situations as mild inconveniences.",
     "theme": "ai_generated"
   }}
 ]
 
 Rules:
 - voice_line MUST be 400-700 characters (this is critical — short lines make bad videos)
-- voice_line should be a mini-story with setup → build-up → punchline
+- voice_line should be FUNNY — deadpan humor, absurd observations, casual acceptance of insanity
+- The narrator is NOT scared — they're mildly annoyed, confused, or just accepting it
 - Use first person ("I was...", "So I'm standing there...")
-- Conversational tone, as if telling a friend
+- Gen Z tone: casual, slightly unhinged, like telling a friend the most absurd thing
 - Keep visual_prompt under 200 characters
 - Make each idea unique — different locations, different types of glitches
 - Avoid violence, explicit content, or politics

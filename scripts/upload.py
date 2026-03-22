@@ -106,27 +106,28 @@ def get_credentials() -> tuple[str, str, str]:
 # ---------------------------------------------------------------------------
 
 TITLE_TEMPLATES = [
-    "This Glitch Just Broke Reality 😱 #{hook_short} #shorts",
-    "The Simulation Made an Error 🔴 #{tag} #shorts",
-    "Wait… This Shouldn't Be Possible 😳 #shorts",
-    "Reality.exe Has Stopped Working 💀 #shorts",
-    "The Matrix Glitched AGAIN 👁️ #shorts",
-    "When the Simulation Forgets Physics ⚡ #shorts",
-    "Is This a Glitch or Are We Dreaming? 🌀 #shorts",
-    "This Glitch Will Break Your Brain 🧠 #shorts",
-    "They Forgot to Patch This Glitch 🕹️ #shorts",
-    "Someone Pressed Ctrl+Z on Reality 🔄 #shorts",
+    "bro the devs forgot to patch this 💀 #shorts",
+    "nah this is NOT normal 😭 #{hook_short} #shorts",
+    "reality said: my bad 🤣 #shorts",
+    "the simulation is TWEAKING 💀 #shorts",
+    "bro explain this RIGHT NOW 😳 #shorts",
+    "who broke the physics engine 😂 #{tag} #shorts",
+    "POV: you found a glitch irl 🕹️ #shorts",
+    "this glitch has me DEAD 💀 #shorts",
+    "reality.exe has left the chat 🫠 #shorts",
+    "i need an adult this isnt normal 😭 #shorts",
+    "the matrix devs are on lunch break 🍔 #shorts",
+    "bro living in 144p 💀 #{hook_short} #shorts",
 ]
 
 DESCRIPTION_TEMPLATE = """{hook}
 
-Reality glitches happen when the simulation forgets the rules. 🔴
+bro the simulation is NOT okay today 💀
 
-Subscribe for daily reality errors, simulation glitches, and mind-bending moments.
+we post daily glitches because clearly the devs don't do QA
 
-📌 Watch more glitches: https://www.youtube.com/@GlitchRealityAI/shorts
-
-🔔 Hit the bell for daily glitch alerts!
+📌 more glitches: https://www.youtube.com/@GlitchRealityAI/shorts
+🔔 subscribe before the matrix patches this 👀
 
 {hashtags}
 

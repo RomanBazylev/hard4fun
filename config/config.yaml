@@ -6,7 +6,7 @@
 
 channel:
   name: "GlitchRealityAI"
-  niche: "Glitch in Reality / Simulation Glitches / Surreal Absurd Moments"
+  niche: "Glitch in Reality / Absurd Comedy / Brainrot Humor"
   language: "en"
   daily_videos: 4          # how many Shorts to produce per run (3–5)
   video_duration_min: 20   # seconds
@@ -94,7 +94,7 @@ tts:
     - "en-US-ChristopherNeural"
     - "en-US-EricNeural"
     - "en-US-JennyNeural"   # female fallback
-  speed: "+10%"             # slightly faster for brainrot energy
+  speed: "+15%"             # snappy delivery for comedy timing
   pitch: "+0Hz"
 
   # --- PAID UPGRADE ---
@@ -124,30 +124,30 @@ montage:
 # YouTube upload
 # -----------------------------------------------------------------------------
 youtube:
-  category_id: "22"          # People & Blogs (works well for Shorts)
+  category_id: "23"          # Comedy
   privacy_status: "private"   # public | unlisted | private
   made_for_kids: false
   default_tags:
     - "shorts"
     - "glitch"
-    - "realityglitch"
-    - "simulationglitch"
-    - "glitcheffect"
-    - "surreal"
-    - "mindblowing"
-    - "wtf"
+    - "comedy"
+    - "funny"
     - "brainrot"
-    - "aiglitch"
+    - "meme"
+    - "humor"
+    - "simulationglitch"
     - "glitchinthematrix"
-    - "simulationtheory"
-    - "realitybreaking"
-    - "glitchyoutube"
-    - "aiart"
-    - "weirdvideo"
-    - "glitchvideo"
-    - "surrealart"
-    - "mindblowingmoments"
-    - "youtubeshortsglitch"
+    - "realityglitch"
+    - "wtf"
+    - "relatable"
+    - "genz"
+    - "fyp"
+    - "viral"
+    - "aicomedy"
+    - "deadpan"
+    - "absurd"
+    - "glitcheffect"
+    - "mindblowing"
 
 # -----------------------------------------------------------------------------
 # Prompt generation (free AI APIs for new ideas)
