@@ -342,14 +342,19 @@ def generate_video_pexels(
 _IMAGE_PROMPT_MODIFIERS: list[str] = [
     "",                                     # original prompt
     "close-up shot, ",
-    "wide angle, ",
+    "wide angle establishing shot, ",
     "dramatic lighting, ",
     "low angle perspective, ",
-    "cinematic, film still, ",
-    "atmospheric, misty, ",
-    "neon-lit, ",
+    "cinematic film still, ",
+    "atmospheric misty, ",
+    "neon-lit cyberpunk, ",
     "moody silhouette, ",
     "overhead bird-eye view, ",
+    "extreme macro detail, ",
+    "dutch angle, tilted frame, ",
+    "soft focus bokeh background, ",
+    "harsh shadows, high contrast, ",
+    "golden hour warm light, ",
 ]
 
 

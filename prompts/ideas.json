@@ -1,9 +1,10 @@
 {
   "meta": {
-    "version": "1.0",
-    "description": "Glitch Reality AI — prompt database",
-    "last_updated": "2026-01-01",
-    "character": "a generic humanoid figure in everyday scenarios"
+    "version": "2.0",
+    "description": "Glitch Reality AI — prompt database (narrative format)",
+    "last_updated": "2026-03-22",
+    "character": "a generic humanoid figure in everyday scenarios",
+    "note": "voice_lines are mini-stories: setup → build-up → punchline, 30-50 seconds spoken"
   },
 
   "style_suffixes": [
@@ -25,31 +26,31 @@
         "id": "eg_001",
         "hook": "When your coffee pours upward instead of down",
         "visual_prompt": "a cup of coffee pouring upward defying gravity in a kitchen, liquid floating up, glitch effect, RGB color shift, surreal simulation error, vertical 9:16",
-        "voice_line": "Wait... did the simulation just forget how gravity works?"
+        "voice_line": "So I'm standing in my kitchen this morning, pouring coffee like I do every single day. But today, the coffee doesn't go down into the cup. It goes up. Straight up. Into the ceiling. I'm just standing there holding the pot, watching brown liquid float upward like gravity forgot how to do its job. I tried pouring water next. Same thing. Upward. Everything else in the room works fine. Just liquids. Going up. The simulation forgot one rule, and now my kitchen ceiling is soaked in coffee."
       },
       {
         "id": "eg_002",
         "hook": "The moment the sky loads the wrong texture",
         "visual_prompt": "outdoor scene where the sky has wrong texture like a video game loading error, pixelated clouds, digital artifacts, simulation glitch, vertical 9:16",
-        "voice_line": "Someone in the control room pressed the wrong button."
+        "voice_line": "I walked outside this morning and something was off. The sky didn't look right. The clouds were blocky. Pixelated. Like someone loaded a low-resolution image where the sky should be. And then I noticed — parts of it were repeating. The exact same cloud pattern, tiled across the horizon, like a video game that ran out of sky textures. Nobody else seemed to notice. They just kept walking. As if a tiled sky was perfectly normal. I took a photo, and when I looked at it later, the sky in the photo was completely normal. But I saw what I saw."
       },
       {
         "id": "eg_003",
         "hook": "When shadows move the wrong direction",
         "visual_prompt": "person walking on a sunny street but shadow moves independently in wrong direction, uncanny glitch, reality error, simulation artifact, vertical 9:16",
-        "voice_line": "Your shadow just got its own free will. That's a glitch."
+        "voice_line": "I was walking down the street around noon. Sun right above me. My shadow should be under my feet. But it wasn't. It was walking next to me. Going the opposite direction. I stopped. It kept going. I waved my hand, and the shadow didn't wave back. It just stood there for a second, then turned a corner I wasn't even walking toward. I followed it, and when I turned that corner, there was nothing there. No shadow. No explanation. Just an empty sidewalk. My shadow came back a few minutes later, acting completely normal, like nothing happened."
       },
       {
         "id": "eg_004",
         "hook": "Mirror shows a version of you from 5 seconds in the future",
         "visual_prompt": "person standing in front of a bathroom mirror, mirror reflection shows them doing something 5 seconds ahead, time glitch, surreal, vertical 9:16",
-        "voice_line": "What if mirrors are actually 5 seconds ahead of reality?"
+        "voice_line": "I'm brushing my teeth and I glance at the mirror. My reflection is already rinsing. I haven't started rinsing yet. I'm still brushing. But mirror-me is five seconds ahead. I stop. Mirror-me stops five seconds later. I raise my left hand. Mirror-me raises it before I even think about it. It's not copying me. I'm copying it. And the worst part? When I finally caught up to what the mirror was showing, it smiled. I didn't smile. It smiled on its own."
       },
       {
         "id": "eg_005",
         "hook": "The moment your reflection blinks at the wrong time",
         "visual_prompt": "close-up of a face looking in a mirror, the reflection blinks slightly off-sync, uncanny glitch effect, eerie simulation error, vertical 9:16",
-        "voice_line": "It blinked first. That's not how mirrors work."
+        "voice_line": "Here's something that will ruin mirrors for you. I was looking at myself in the bathroom mirror, just a normal Tuesday. I blinked. And my reflection blinked too. But half a second late. I blinked again. Same delay. It was matching my movements, but just slightly off. Like bad internet lag, but in real life. I stared for a full minute without blinking. My reflection stared back. And then it blinked without me. Just once. A slow, deliberate blink. While my eyes stayed wide open. I haven't looked in that mirror since."
       }
     ],
 
@@ -58,25 +59,25 @@
         "id": "ng_001",
         "hook": "Tree growing in reverse at 1000x speed",
         "visual_prompt": "a tree rapidly un-growing, leaves flying back onto branches, wood compressing back into seed, reverse time lapse, glitch effect, simulation rewind, vertical 9:16",
-        "voice_line": "The simulation hit Ctrl+Z on that tree."
+        "voice_line": "There's a tree in my neighbor's yard that started un-growing last week. Monday it was a full oak. Tuesday the leaves started pulling back in. Wednesday the branches shrank. By Thursday it was the size of a sapling. Friday morning I watched it compress itself back into an acorn. Nobody else on the street said anything. The neighbor just mowed his lawn around the spot where a fifty-year-old tree used to be, like it was never there. But I have photos from last month. The tree was real. And now it's gone. The simulation hit undo."
       },
       {
         "id": "ng_002",
-        "hook": "Ocean decides it's tired and just stops moving",
+        "hook": "Ocean decides to stop moving and just freezes still",
         "visual_prompt": "vast ocean where all waves suddenly freeze completely still, perfectly flat glass-like water, eerie silence, reality error, simulation pause, vertical 9:16",
-        "voice_line": "Someone paused the ocean. Update in progress."
+        "voice_line": "I was at the beach last weekend when the ocean just stopped. Not frozen. Not ice. The water just stopped moving. Every wave, mid-break, held perfectly still like someone pressed pause on reality. The wind was still blowing. Seagulls were still flying. But the entire Pacific Ocean was just glass. Flat. Silent. Perfect. It lasted about forty-five seconds. Then everything snapped back, and the waves crashed all at once. The sound was unreal. Everyone on the beach just stood there, soaking wet, pretending it didn't happen."
       },
       {
         "id": "ng_003",
         "hook": "Rain falls upward but only in one spot",
         "visual_prompt": "rain falling upward in a single column in a park, surrounding area normal, localized gravity anomaly, glitch in reality, surreal, vertical 9:16",
-        "voice_line": "Local gravity patch. The devs are still working on it."
+        "voice_line": "It was raining everywhere except this one spot in the park. Actually, it was raining there too. Just upward. Drops were falling from puddles on the ground, going straight up into the clouds. A perfect column of reverse rain, maybe six feet wide. Everything around it? Normal rain. Going down. I walked into it. Dry. Completely dry inside. But I could see the water going up around me. When I stepped back out, I was soaking wet again instantly. I went in and out three times. Dry. Wet. Dry. Wet. And then it just stopped. Like someone patched the bug."
       },
       {
         "id": "ng_004",
         "hook": "A flock of birds frozen mid-flight",
         "visual_prompt": "dozens of birds frozen mid-flight in a blue sky, perfectly still, time stopped, glitch effect, simulation pause, eerie photo-real, vertical 9:16",
-        "voice_line": "Someone hit pause at exactly the wrong moment."
+        "voice_line": "I looked up at the sky and there were about thirty birds frozen mid-flight. Wings out. Not falling. Not gliding. Just stuck in the air like someone took a photo and hung it in the sky. Cars were moving. People were walking. Wind was blowing. But these birds were hovering perfectly still, like buffering. It lasted maybe twenty seconds. Then they all moved at once, like the game finally loaded, and flew away in perfect formation. I've never seen birds fly that perfectly. It looked choreographed. Rehearsed. Like a render."
       }
     ],
 
@@ -85,19 +86,19 @@
         "id": "ph_001",
         "hook": "Fire burns cold and ice melts upward",
         "visual_prompt": "candle flame that is cold blue and freezing objects near it while an ice cube melts upward into steam, inverted physics, reality error, glitch, vertical 9:16",
-        "voice_line": "Hot and cold just swapped. Classic simulation day."
+        "voice_line": "I lit a candle last night and the flame was cold. Not blue. Not out. It was flickering normally. But when I held my hand over it, it was freezing. The closer I got, the colder it felt. Meanwhile, the ice in my glass was melting upward. Not dripping down. The water was climbing up out of the glass and evaporating into the air. Hot things were cold. Cold things were hot. My coffee was freezing in the microwave. My ice cream was boiling in the freezer. It lasted about ten minutes and then everything snapped back to normal. But that candle still gives me chills. Literally."
       },
       {
         "id": "ph_002",
         "hook": "Car drives fine but its wheels are spinning the wrong way",
         "visual_prompt": "car driving forward on a road but wheels spinning backwards, uncanny motion glitch, reality error, surreal CGI quality, vertical 9:16",
-        "voice_line": "The physics engine is running but not fully synchronized."
+        "voice_line": "I'm driving down the highway doing sixty, and I glance out the window. My wheels are spinning backward. The car is going forward. Speedometer says sixty-two. GPS says I'm heading north. But every wheel on this car is spinning in reverse. I pulled over and got out to look. Stopped car. Wheels not spinning. Got back in. Started driving. Wheels spinning backward again. I drove twelve miles with backward-spinning wheels. When I got home I checked my dashcam. The footage shows the wheels spinning forward. But I know what I saw."
       },
       {
         "id": "ph_003",
         "hook": "Stack of books floating one inch above the table forever",
         "visual_prompt": "stack of old books levitating exactly one inch above a wooden table, no explanation, slight digital artifact glow underneath, reality glitch, vertical 9:16",
-        "voice_line": "Gravity exemption granted. No reason given."
+        "voice_line": "There's a stack of books on my desk that won't touch the table. They're floating. Exactly one inch above the surface. I can slide my hand underneath. There's nothing holding them up. No magnets. No strings. No trick. Just three old books hovering in place. I've tried pushing them down. They bounce right back to one inch. I tried putting more books on top. They all float at one inch. I moved the table. The books stayed floating in the same spot in the air. No table needed. They just float there. It's been like this for four days. I've stopped questioning it."
       }
     ],
 
@@ -106,19 +107,19 @@
         "id": "hu_001",
         "hook": "Your clone walks past you going the opposite direction",
         "visual_prompt": "person walking down a street, identical clone of them walking in the opposite direction, both wearing same clothes, reality duplication glitch, vertical 9:16",
-        "voice_line": "Did the renderer just spawn a duplicate NPC?"
+        "voice_line": "I was walking to the grocery store when I saw myself walking toward me from the other direction. Same jacket. Same shoes. Same face. My exact duplicate was walking past me on the sidewalk. I turned to look. He turned at the exact same time. We made eye contact. He had the same confused look I probably had. Then he just kept walking. I almost followed him, but something told me not to. When I got to the store, the cashier said I was just in there five minutes ago. Bought the same things I was about to buy. I checked my fridge when I got home. The groceries were already there."
       },
       {
         "id": "hu_002",
         "hook": "Everyone in the cafe freezes except you",
         "visual_prompt": "busy cafe where every single person is frozen mid-action, coffee cups in mid-air, one person standing normally looking around confused, simulation pause, vertical 9:16",
-        "voice_line": "You've been excluded from the update. Lucky you."
+        "voice_line": "I'm sitting in a coffee shop, scrolling my phone, and everything stops. Not slows down. Stops. The barista is mid-pour, coffee hanging in the air. The guy next to me has a cookie halfway to his mouth. A woman by the door is stuck mid-step, one foot off the ground. Nobody's breathing. Nobody's blinking. I can move fine. I can hear my own heartbeat. I waved my hand in front of someone's face. Nothing. I walked around the entire cafe and every single person was frozen solid. Then the music stopped too. Total silence. And then thirty seconds later, everything resumed. Mid-conversation. Mid-bite. Like nothing happened. I was the only one who noticed."
       },
       {
         "id": "hu_003",
         "hook": "Your hands phase through the keyboard",
         "visual_prompt": "close-up of hands typing on a laptop keyboard, fingers occasionally phasing through the keys, ghost hands, simulation collision error, digital artifact, vertical 9:16",
-        "voice_line": "Collision detection failed. Relogging won't fix this."
+        "voice_line": "I'm typing an email and my fingers go through the keyboard. Not like I missed the key. My actual finger phased through the physical key, through the laptop, and poked out the bottom. I could see my fingertip sticking out underneath my laptop. I pulled it back out and tried again. Same thing. My hands were going through solid objects like a ghost. I tried picking up my phone. My hand went right through it. I tried touching the desk. Through it. For about two minutes, I could not touch anything physical. My hands just passed through everything. Then it stopped and I could type again. That email is still in my drafts. I'm too shook to send it."
       }
     ],
 
@@ -127,34 +128,29 @@
         "id": "co_001",
         "hook": "The moon renders at low resolution tonight",
         "visual_prompt": "nighttime sky with the moon appearing in extremely low pixel resolution like a video game asset, everything else normal quality, LOD glitch, simulation error, vertical 9:16",
-        "voice_line": "They forgot to load the high-res moon texture."
+        "voice_line": "Last night I looked up at the moon and it was pixelated. Not blurry. Pixelated. Like a sixteen-bit sprite pasted into the real sky. The stars were fine. Everything else looked normal. But the moon was running at about twelve pixels across. I could count the squares. I took a photo and zoomed in. The photo shows a normal moon. Clear, round, detailed. But to my eyes it was a blocky mess. I asked my neighbor if she noticed. She said the moon looked fine. I spent the entire night watching a low-resolution moon cross a high-definition sky. By morning it looked normal again. Load distance must have caught up."
       },
       {
         "id": "co_002",
         "hook": "Sun rises twice in one morning",
         "visual_prompt": "time-lapse of sunrise, sun rises normally, then RESETS back below horizon and rises again, simulation rewind glitch, reality error, surreal sky, vertical 9:16",
-        "voice_line": "Morning.exe crashed and restarted."
+        "voice_line": "The sun rose this morning. Beautiful sunrise. Orange, pink, the whole package. Got my coffee, watched it come up over the horizon. And then it went back down. Not a sunset. It sank back below the horizon in reverse, like someone was rewinding a video. The sky went dark again. Stars came back out for about ten seconds. And then the sun rose again. Same sunrise. Same colors. Same clouds. The exact same sunrise, playing for the second time. My clock said six forty-seven both times. I checked three clocks. All said six forty-seven. The simulation ran the morning sequence twice. Nobody else noticed. Or nobody wants to admit it."
       },
       {
         "id": "co_003",
         "hook": "Stars form perfect geometric shapes at 3am",
         "visual_prompt": "nighttime sky where stars slowly align into perfect geometric patterns, triangles hexagons forming in the stars, reality code visible, simulation geometry, vertical 9:16",
-        "voice_line": "The source code is showing through. Zoom in."
+        "voice_line": "At three AM I looked out my window and the stars were moving. Not shooting stars. All of them. Slowly drifting into patterns. Perfect triangles. Hexagons. Circles within circles. Like someone was rearranging them into a grid. The entire sky became geometric. Every star locked into position at equal distances from every other star. It looked like a circuit board. Or a blueprint. Or source code. The patterns held for maybe two minutes. Then the stars scrambled back to their normal random positions. But here's the thing — I Googled the constellations after. They're not quite where they should be. A few stars are off by just a fraction. Like they didn't quite make it back."
       }
     ]
   },
 
   "voice_line_templates": [
-    "Wait... did the simulation just {action}?",
-    "Someone in the control room {action}.",
-    "The simulation hit {key_combo} on {object}.",
-    "The devs are still working on {issue}.",
-    "{object} just got {ability}. That's a glitch.",
-    "Classic simulation day. {observation}.",
-    "{system}.exe crashed and restarted.",
-    "Someone forgot to load the {asset} texture.",
-    "Collision detection failed. {consequence}.",
-    "The physics engine is running but not fully {sync_state}."
+    "So I'm just {doing_action}, and suddenly {weird_thing_happens}. I stop and stare. {description_of_glitch}. Nobody else seems to notice. {creepy_detail}. It lasted {duration} and then everything snapped back to normal. But {lingering_doubt}.",
+    "Here's something that happened to me {time_ago}. I was {location} when {glitch_event}. At first I thought {rational_explanation}. But then {escalation}. {vivid_detail}. I tried {reaction}. {result}. It's been {time_since} and I still can't explain it.",
+    "I need to tell someone about this. {day_of_week}, I noticed {first_sign}. Then {second_sign}. By the time {third_sign}, I knew something was wrong. {detailed_description}. {other_people_reaction}. {aftermath}.",
+    "Last {timeframe}, {normal_activity} when reality just broke. {glitch_description}. I watched it happen for {duration}. {attempt_to_interact}. {weird_response}. When it stopped, {evidence_or_lack}. {closing_thought}.",
+    "This is going to sound insane. {setup}. {first_weird_thing}. I tell myself {denial}. Then {second_weird_thing}. Now I'm paying attention. {investigation}. {discovery}. {punchline}."
   ],
 
   "random_details": [

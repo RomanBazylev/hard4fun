@@ -9,8 +9,8 @@ channel:
   niche: "Glitch in Reality / Simulation Glitches / Surreal Absurd Moments"
   language: "en"
   daily_videos: 4          # how many Shorts to produce per run (3–5)
-  video_duration_min: 5    # seconds
-  video_duration_max: 12   # seconds
+  video_duration_min: 20   # seconds
+  video_duration_max: 50   # seconds
 
 # -----------------------------------------------------------------------------
 # Video generation — hybrid strategy combines all available methods
@@ -38,7 +38,7 @@ video:
     models:
       - "black-forest-labs/FLUX.1-schnell"       # fast, high quality
       - "stabilityai/stable-diffusion-xl-base-1.0" # fallback
-    num_images: 4           # images per video (each ~3 s of animation)
+    num_images: 10          # images per video (each ~3 s = ~30s total)
     width: 576              # portrait 9:16
     height: 1024
     duration_per_image: 3.0 # seconds of Ken Burns animation per image

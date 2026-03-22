@@ -131,28 +131,31 @@ def select_daily_prompts(count: int = 4) -> list[dict[str, Any]]:
 # AI-powered idea generation (Gemini free tier)
 # ---------------------------------------------------------------------------
 
-GEMINI_SYSTEM = """You are a creative director for a YouTube Shorts channel called GlitchRealityAI.
-Generate new "glitch in reality" video ideas in the exact JSON format requested.
-Each idea must be short, punchy, mind-bending, surreal, or WTF-inducing.
-Focus on everyday objects or situations with an impossible physics/simulation error twist."""
+GEMINI_SYSTEM = """You are a creative director for a viral YouTube Shorts channel called GlitchRealityAI.
+You create "glitch in reality" stories — first-person narratives about impossible things happening in everyday life.
+The style is storytelling: the narrator describes something weird that happened to them, building tension, then ending with a creepy or funny punchline.
+Think of it like a Reddit post from r/Glitch_in_the_Matrix but told as a spoken monologue."""
 
-GEMINI_USER_TEMPLATE = """Generate {count} new YouTube Shorts ideas for the "Glitch in Reality" niche.
+GEMINI_USER_TEMPLATE = """Generate {count} new YouTube Shorts scripts for the "Glitch in Reality" niche.
 
 Return ONLY a valid JSON array (no markdown, no preamble) with this exact schema:
 [
   {{
-    "id": "ai_<unique_3digit_number>",
-    "hook": "one-line description of the glitch",
-    "visual_prompt": "cinematic description for AI video generation, vertical 9:16, photorealistic",
-    "voice_line": "1–2 sentence spoken line that sounds creepy/funny/mind-bending",
+    "id": "ai_<unique_5digit_number>",
+    "hook": "clickbait-style one-line title, 5-10 words",
+    "visual_prompt": "cinematic visual description for AI image generation, vertical 9:16, photorealistic, surreal glitch aesthetic",
+    "voice_line": "A 30-50 second spoken monologue. First-person. Setup: describe a normal situation. Build-up: something impossible starts happening. Escalation: describe the glitch in vivid detail. Punchline: a creepy or funny ending. Make it sound like a real person telling a story, conversational tone.",
     "theme": "ai_generated"
   }}
 ]
 
 Rules:
+- voice_line MUST be 400-700 characters (this is critical — short lines make bad videos)
+- voice_line should be a mini-story with setup → build-up → punchline
+- Use first person ("I was...", "So I'm standing there...")
+- Conversational tone, as if telling a friend
 - Keep visual_prompt under 200 characters
-- Keep voice_line under 120 characters  
-- Make each idea unique and different from others
+- Make each idea unique — different locations, different types of glitches
 - Avoid violence, explicit content, or politics
 """
 
