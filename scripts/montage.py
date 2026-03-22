@@ -101,45 +101,38 @@ def pick_music_track() -> Path | None:
 
 def ensure_music_available() -> None:
     """
-    Download a free ambient background track from Pixabay if the
-    assets/music/ directory is empty.
+    Generate a dark ambient background track using FFmpeg if the
+    assets/music/ directory is empty.  No downloads needed.
     """
     MUSIC_DIR.mkdir(parents=True, exist_ok=True)
     existing = list(MUSIC_DIR.glob("*.mp3")) + list(MUSIC_DIR.glob("*.wav"))
     if existing:
         return
 
-    import requests as _req
-
-    FALLBACK_TRACKS = [
-        {
-            "name": "dark-ambient-background.mp3",
-            "url": "https://cdn.pixabay.com/audio/2022/10/25/audio_340f870a40.mp3",
-        },
-        {
-            "name": "mysterious-ambient.mp3",
-            "url": "https://cdn.pixabay.com/audio/2023/01/16/audio_8a4b726c33.mp3",
-        },
-    ]
-
-    for track in FALLBACK_TRACKS:
-        dest = MUSIC_DIR / track["name"]
-        try:
-            log.info("Downloading background music: %s", track["name"])
-            resp = _req.get(track["url"], timeout=60, stream=True)
-            resp.raise_for_status()
-            with dest.open("wb") as f:
-                for chunk in resp.iter_content(chunk_size=8192):
-                    if chunk:
-                        f.write(chunk)
-            log.info("✓ Music downloaded: %s (%.1f KB)", dest, dest.stat().st_size / 1024)
-            return  # one track is enough
-        except Exception as exc:
-            log.warning("Failed to download music %s: %s", track["name"], exc)
-            dest.unlink(missing_ok=True)
-            continue
-
-    log.warning("Could not download any background music — continuing without it.")
+    dest = MUSIC_DIR / "ambient_drone.mp3"
+    # Generate a 120-second dark ambient drone with FFmpeg:
+    # - Low sine wave (55 Hz) as a bass hum
+    # - Layered with filtered brown noise for texture
+    # - Faded in/out for smooth looping
+    ok = run_ffmpeg(
+        [
+            "ffmpeg", "-y",
+            "-f", "lavfi", "-i",
+            "sine=frequency=55:duration=120,volume=0.3",
+            "-f", "lavfi", "-i",
+            "anoisesrc=duration=120:color=brown,lowpass=f=200,volume=0.15",
+            "-filter_complex",
+            "[0:a][1:a]amix=inputs=2:duration=first,"
+            "afade=t=in:st=0:d=3,afade=t=out:st=117:d=3",
+            "-c:a", "libmp3lame", "-b:a", "128k",
+            str(dest),
+        ],
+        label="generate_ambient",
+    )
+    if ok and dest.exists():
+        log.info("✓ Ambient track generated: %s (%.1f KB)", dest, dest.stat().st_size / 1024)
+    else:
+        log.warning("Failed to generate ambient track — continuing without music.")
 
 
 def resolve_font(config: dict[str, Any]) -> str:
