@@ -27,12 +27,12 @@ video:
   hf_inference:
     timeout: 300
     provider_models:
-      - provider: "fal-ai"
-        model: "Wan-AI/Wan2.1-T2V-14B"
-      - provider: "fal-ai"
-        model: "tencent/HunyuanVideo"
       - provider: "replicate"
-        model: "genmo/mochi-1-preview"
+        model: "tencent/HunyuanVideo"
+      - provider: "novita"
+        model: "Wan-AI/Wan2.1-T2V-14B"
+      - provider: "replicate"
+        model: "Wan-AI/Wan2.1-T2V-14B"
 
   huggingface:
     spaces:

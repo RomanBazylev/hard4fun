@@ -170,6 +170,7 @@ def build_subtitle_filter(
 
     # Position: centre horizontally, ~70% down the screen (safe for Shorts UI)
     # y = 70% of height minus text height, clamped so it never goes off-screen
+    # NOTE: commas inside FFmpeg expressions must be escaped as \\, in drawtext
     return (
         f"drawtext=text='{escaped_text}'"
         f":fontfile='{font_path}'"
@@ -178,8 +179,8 @@ def build_subtitle_filter(
         f":bordercolor={outline_color}"
         f":borderw={outline_w}"
         f":x=(w-text_w)/2"
-        f":y=min(h*0.70\, h-text_h-40)"
-        f":enable='between(t,0,{video_duration})'"
+        f":y=min(h*0.70\\, h-text_h-40)"
+        f":enable='between(t\\,0\\,{video_duration})'"
     )
 
 

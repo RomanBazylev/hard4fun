@@ -212,7 +212,13 @@ def upload_video(
         json=metadata,
         timeout=30,
     )
-    init_resp.raise_for_status()
+    if init_resp.status_code >= 400:
+        log.error(
+            "YouTube metadata rejected (%d): %s",
+            init_resp.status_code,
+            init_resp.text[:1000],
+        )
+        init_resp.raise_for_status()
     upload_url = init_resp.headers.get("Location")
     if not upload_url:
         log.error("No upload URL in response headers: %s", dict(init_resp.headers))
