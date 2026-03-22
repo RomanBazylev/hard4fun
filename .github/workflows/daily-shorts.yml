@@ -43,6 +43,10 @@ on:
         default: false
         type: boolean
 
+permissions:
+  contents: write   # commit updated prompts/logs
+  issues: write     # create issue on pipeline failure
+
 jobs:
   generate-and-upload:
     name: Generate & Upload ${{ inputs.video_count || '4' }} Shorts
