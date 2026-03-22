@@ -61,7 +61,7 @@ def load_ideas() -> dict[str, Any]:
 def load_used() -> list[str]:
     """Return list of recently used prompt IDs (last 30 days window)."""
     if USED_FILE.exists():
-        with USED_FILE.open() as f:
+        with USED_FILE.open(encoding="utf-8-sig") as f:
             return json.load(f)
     return []
 
