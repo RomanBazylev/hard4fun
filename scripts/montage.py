@@ -258,7 +258,6 @@ def _build_karaoke_filter(
         chunk_text = " ".join(w["word"] for w in chunk)
         escaped_chunk = _escape_drawtext(chunk_text)
 
-        # NOTE: commas inside FFmpeg expressions must be escaped as \\,
         filters.append(
             f"drawtext=text='{escaped_chunk}'"
             f":fontfile='{font_path}'"
@@ -267,8 +266,8 @@ def _build_karaoke_filter(
             f":bordercolor={outline_color}"
             f":borderw={outline_w}"
             f":x=(w-text_w)/2"
-            f":y=min(h*0.70\\, h-text_h-40)"
-            f":enable='between(t\\,{chunk_start:.3f}\\,{chunk_end:.3f})'"
+            f":y='min(h*0.70, h-text_h-40)'"
+            f":enable='between(t,{chunk_start:.3f},{chunk_end:.3f})'"
         )
 
         # Highlight layer: current word in yellow, slightly larger, above base
@@ -285,8 +284,8 @@ def _build_karaoke_filter(
                 f":bordercolor={outline_color}"
                 f":borderw={outline_w + 1}"
                 f":x=(w-text_w)/2"
-                f":y=min(h*0.70\\, h-text_h-40)-{fontsize + 10}"
-                f":enable='between(t\\,{w_start:.3f}\\,{w_end:.3f})'"
+                f":y='min(h*0.70, h-text_h-40)-{fontsize + 10}'"
+                f":enable='between(t,{w_start:.3f},{w_end:.3f})'"
             )
 
     if not filters:
@@ -336,8 +335,8 @@ def _build_static_subtitle(
         f":bordercolor={outline_color}"
         f":borderw={outline_w}"
         f":x=(w-text_w)/2"
-        f":y=min(h*0.70\\, h-text_h-40)"
-        f":enable='between(t\\,0\\,{video_duration})'"
+        f":y='min(h*0.70, h-text_h-40)'"
+        f":enable='between(t,0,{video_duration})'"
     )
 
 
@@ -594,10 +593,13 @@ def assemble_short(
         sub_filter = build_subtitle_filter(
             voice_text, config, font_path, target_dur, audio_path=audio_path,
         )
+        # Write filter to file — avoids arg-length issues with 100+ drawtext layers
+        sub_script = tmp / "subtitle.filter"
+        sub_script.write_text(sub_filter, encoding="utf-8")
         ok = run_ffmpeg(
             [
                 "ffmpeg", "-y", "-i", str(glitched),
-                "-vf", sub_filter,
+                "-filter_script:v", str(sub_script),
                 "-c:v", "libx264", "-preset", "fast", "-crf", "22",
                 "-an", str(subtitled),
             ],
