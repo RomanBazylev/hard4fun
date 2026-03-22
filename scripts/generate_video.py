@@ -336,6 +336,111 @@ def generate_video_pexels(
 
 
 # ---------------------------------------------------------------------------
+# AI Images + Ken Burns — free text-to-image via HF Inference → animated video
+# ---------------------------------------------------------------------------
+
+_IMAGE_PROMPT_MODIFIERS: list[str] = [
+    "",                                     # original prompt
+    "close-up shot, ",
+    "wide angle, ",
+    "dramatic lighting, ",
+    "low angle perspective, ",
+    "cinematic, film still, ",
+    "atmospheric, misty, ",
+    "neon-lit, ",
+    "moody silhouette, ",
+    "overhead bird-eye view, ",
+]
+
+
+def _make_prompt_variations(base_prompt: str, count: int) -> list[str]:
+    """Create slight visual variations of a prompt for image diversity."""
+    mods = list(_IMAGE_PROMPT_MODIFIERS)
+    random.shuffle(mods)
+    return [f"{mods[i % len(mods)]}{base_prompt}" for i in range(count)]
+
+
+def generate_video_ai_images(
+    prompt: str,
+    config: dict[str, Any],
+    output_path: Path,
+) -> bool:
+    """
+    Generate AI images via HF text_to_image, then assemble a Ken Burns
+    slideshow video.  Uses free models like FLUX.1-schnell on HF Inference.
+
+    This is the most cost-effective AI-generated content approach:
+    text_to_image is free on HF native inference for many models.
+    """
+    try:
+        from huggingface_hub import InferenceClient
+    except ImportError:
+        log.error("huggingface_hub not installed.")
+        return False
+
+    hf_token: str | None = os.getenv("HF_TOKEN")
+    if not hf_token:
+        log.error("HF_TOKEN not set — cannot use AI image generation.")
+        return False
+
+    ai_cfg = config["video"].get("ai_images", {})
+    models: list[str] = ai_cfg.get("models", ["black-forest-labs/FLUX.1-schnell"])
+    num_images: int = ai_cfg.get("num_images", 4)
+    img_w: int = ai_cfg.get("width", 576)
+    img_h: int = ai_cfg.get("height", 1024)
+    dur_per_img: float = ai_cfg.get("duration_per_image", 3.0)
+
+    client = InferenceClient(api_key=hf_token)
+    variations = _make_prompt_variations(prompt, num_images)
+
+    saved_images: list[Path] = []
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    for i, var_prompt in enumerate(variations):
+        for model_id in models:
+            try:
+                log.info(
+                    "AI image %d/%d: model=%s prompt=%.80s…",
+                    i + 1, num_images, model_id, var_prompt,
+                )
+                image = client.text_to_image(
+                    var_prompt,
+                    model=model_id,
+                    width=img_w,
+                    height=img_h,
+                )
+                img_path = output_path.parent / f"_ai_img_{i}.png"
+                image.save(str(img_path))
+                saved_images.append(img_path)
+                log.info("✓ AI image %d/%d saved (%s)", i + 1, num_images, model_id)
+                break  # success — move to next variation
+            except Exception as exc:
+                log.warning("Image gen failed (%s): %s", model_id, exc)
+                continue
+
+    if not saved_images:
+        log.error("Failed to generate any AI images.")
+        return False
+
+    log.info("Generated %d/%d AI images — building Ken Burns video …", len(saved_images), num_images)
+
+    # Build animated slideshow
+    from scripts.montage import build_kenburns_video
+
+    ok = build_kenburns_video(
+        saved_images,
+        output_path,
+        duration_per_image=dur_per_img,
+    )
+
+    # Cleanup temp images
+    for img in saved_images:
+        img.unlink(missing_ok=True)
+
+    return ok
+
+
+# ---------------------------------------------------------------------------
 # HF Inference Providers — free monthly credits, serverless (fal-ai, Replicate…)
 # ---------------------------------------------------------------------------
 
@@ -539,6 +644,7 @@ def generate_video_runway(
 # ---------------------------------------------------------------------------
 
 PROVIDERS: dict[str, Any] = {
+    "ai_images": generate_video_ai_images,
     "hf_inference": generate_video_hf_inference,
     "huggingface": generate_video_huggingface,
     "pexels": generate_video_pexels,
@@ -553,27 +659,61 @@ def generate_video(
     config: dict[str, Any] | None = None,
 ) -> bool:
     """
-    Generate a video from `prompt` and save to `output_path`.
+    Generate a video from *prompt* and save to *output_path*.
 
-    Provider is read from config.yaml → video.provider.
-    If `video.fallback_provider` is set and the primary fails,
-    that provider is tried automatically.
+    Supports two strategies (``video.strategy`` in config.yaml):
 
-    Args:
-        prompt:      Text description of the video scene.
-        output_path: Destination path for the generated video file.
-        config:      Loaded config dict (loaded from file if None).
-
-    Returns:
-        True on success, False on failure.
+    * **single** (default) — use ``provider``, then ``fallback_provider``.
+    * **hybrid** — randomly choose from ``hybrid_providers`` (weighted).
+      On failure, try remaining providers in-order; ``fallback_provider``
+      is always the last safety net.
     """
     if config is None:
         config = load_config()
 
     output_path = Path(output_path)
-    provider = config["video"].get("provider", "huggingface")
+    strategy = config["video"].get("strategy", "single")
     fallback = config["video"].get("fallback_provider", "")
 
+    # ------------------------------------------------------------------
+    # Hybrid: weighted random selection, then cascade
+    # ------------------------------------------------------------------
+    if strategy == "hybrid":
+        hybrid_cfg: list[dict[str, Any]] = config["video"].get("hybrid_providers", [])
+        if hybrid_cfg:
+            names = [p["provider"] for p in hybrid_cfg]
+            weights = [p.get("weight", 1) for p in hybrid_cfg]
+
+            # Build a weighted-random order (chosen first, rest shuffled)
+            chosen = random.choices(names, weights=weights, k=1)[0]
+            order = [chosen] + [n for n in names if n != chosen]
+
+            tried: set[str] = set()
+            for name in order:
+                if name in tried or name not in PROVIDERS:
+                    continue
+                tried.add(name)
+                log.info("Hybrid strategy: trying provider '%s'", name)
+                if PROVIDERS[name](prompt, config, output_path):
+                    return True
+                log.warning("Hybrid provider '%s' failed.", name)
+
+            # Ultimate fallback
+            if fallback and fallback not in tried and fallback in PROVIDERS:
+                log.warning("Hybrid exhausted — trying fallback '%s'", fallback)
+                if PROVIDERS[fallback](prompt, config, output_path):
+                    return True
+
+            log.error("All hybrid providers exhausted.")
+            return False
+
+        # No hybrid_providers configured — fall through to single mode
+        log.warning("strategy=hybrid but no hybrid_providers — using single mode.")
+
+    # ------------------------------------------------------------------
+    # Single: primary → fallback
+    # ------------------------------------------------------------------
+    provider = config["video"].get("provider", "huggingface")
     if provider not in PROVIDERS:
         raise ValueError(f"Unknown video provider: '{provider}'. Valid: {list(PROVIDERS)}")
 

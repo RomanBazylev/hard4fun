@@ -185,6 +185,128 @@ def build_subtitle_filter(
 
 
 # ---------------------------------------------------------------------------
+# Ken Burns slideshow — animated video from AI images
+# ---------------------------------------------------------------------------
+
+# Zoom/pan effects that avoid commas in FFmpeg expressions
+_KENBURNS_EFFECTS: list[dict[str, str]] = [
+    # Slow zoom-in from centre
+    {"z": "1+0.005*on", "x": "iw/2-(iw/zoom/2)", "y": "ih/2-(ih/zoom/2)"},
+    # Slow zoom-out from centre
+    {"z": "1.5-0.005*on", "x": "iw/2-(iw/zoom/2)", "y": "ih/2-(ih/zoom/2)"},
+    # Pan left→right at steady zoom
+    {"z": "1.3", "x": "on*(iw-iw/zoom)/{d}", "y": "ih/2-(ih/zoom/2)"},
+    # Pan right→left at steady zoom
+    {"z": "1.3", "x": "(iw-iw/zoom)-on*(iw-iw/zoom)/{d}", "y": "ih/2-(ih/zoom/2)"},
+    # Zoom-in + pan down
+    {"z": "1+0.004*on", "x": "iw/2-(iw/zoom/2)", "y": "on*(ih-ih/zoom)/{d}"},
+    # Zoom-in + pan up
+    {"z": "1+0.004*on", "x": "iw/2-(iw/zoom/2)", "y": "(ih-ih/zoom)-on*(ih-ih/zoom)/{d}"},
+]
+
+
+def build_kenburns_video(
+    image_paths: list[Path],
+    output_path: Path,
+    duration_per_image: float = 3.0,
+    fps: int = 25,
+    output_w: int = 1080,
+    output_h: int = 1920,
+) -> bool:
+    """
+    Build a Ken Burns slideshow video from a list of images.
+
+    Each image is scaled to a canvas 1.5× the output size, then animated
+    with a random zoom/pan effect.  Clips are concatenated into a single
+    video that can be fed directly into the normal montage pipeline.
+
+    Returns True on success.
+    """
+    if not image_paths:
+        log.error("No images provided for Ken Burns slideshow.")
+        return False
+
+    frames_per_image = int(duration_per_image * fps)
+    canvas_w = int(output_w * 1.5)
+    canvas_h = int(output_h * 1.5)
+
+    with tempfile.TemporaryDirectory(prefix="kenburns_") as tmp_dir:
+        tmp = Path(tmp_dir)
+        clips: list[Path] = []
+
+        used_indices: list[int] = []
+        for i, img in enumerate(image_paths):
+            # Pick a different effect for consecutive images
+            avail = [j for j in range(len(_KENBURNS_EFFECTS)) if j not in used_indices]
+            if not avail:
+                avail = list(range(len(_KENBURNS_EFFECTS)))
+                used_indices.clear()
+            idx = random.choice(avail)
+            used_indices.append(idx)
+            eff = _KENBURNS_EFFECTS[idx]
+
+            z_expr = eff["z"]
+            x_expr = eff["x"].replace("{d}", str(frames_per_image))
+            y_expr = eff["y"].replace("{d}", str(frames_per_image))
+
+            vf = (
+                f"scale={canvas_w}:{canvas_h}:"
+                f"force_original_aspect_ratio=decrease,"
+                f"pad={canvas_w}:{canvas_h}:(ow-iw)/2:(oh-ih)/2:black,"
+                f"zoompan=z='{z_expr}':x='{x_expr}':y='{y_expr}'"
+                f":d={frames_per_image}:s={output_w}x{output_h}:fps={fps},"
+                f"format=yuv420p"
+            )
+
+            clip_path = tmp / f"clip_{i}.mp4"
+            ok = run_ffmpeg(
+                [
+                    "ffmpeg", "-y",
+                    "-loop", "1", "-i", str(img),
+                    "-vf", vf,
+                    "-t", str(duration_per_image),
+                    "-c:v", "libx264", "-preset", "fast", "-crf", "22",
+                    str(clip_path),
+                ],
+                label=f"kenburns_{i}",
+            )
+            if ok and clip_path.exists():
+                clips.append(clip_path)
+            else:
+                log.warning("Ken Burns clip %d failed — skipping image.", i)
+
+        if not clips:
+            log.error("All Ken Burns clips failed.")
+            return False
+
+        if len(clips) == 1:
+            shutil.copy(clips[0], output_path)
+            log.info("✓ Ken Burns video (single clip): %s", output_path)
+            return True
+
+        # Concatenate clips via concat demuxer
+        concat_list = tmp / "concat.txt"
+        with concat_list.open("w") as f:
+            for clip in clips:
+                f.write(f"file '{clip}'\n")
+
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        ok = run_ffmpeg(
+            [
+                "ffmpeg", "-y",
+                "-f", "concat", "-safe", "0",
+                "-i", str(concat_list),
+                "-c", "copy",
+                str(output_path),
+            ],
+            label="kenburns_concat",
+        )
+        if ok:
+            log.info("✓ Ken Burns video: %s (%d clips)", output_path, len(clips))
+        return ok
+
+
+# ---------------------------------------------------------------------------
 # Glitch effect filter chain
 # ---------------------------------------------------------------------------
 

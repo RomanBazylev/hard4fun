@@ -13,14 +13,35 @@ channel:
   video_duration_max: 12   # seconds
 
 # -----------------------------------------------------------------------------
-# Video generation — providers listed in priority order (first = preferred)
+# Video generation — hybrid strategy combines all available methods
 # -----------------------------------------------------------------------------
 video:
-  provider: "hf_inference"  # options: hf_inference | huggingface | pexels | kling | runway
-  fallback_provider: "pexels"  # auto-fallback if primary fails
+  strategy: "hybrid"       # hybrid = random mix | single = one provider + fallback
+  provider: "ai_images"    # for single mode
+  fallback_provider: "pexels"  # ultimate safety net (always works)
   resolution: "576x1024"    # 9:16 vertical (Wan native)
   fps: 16
   num_frames: 81            # ~5 s at 16 fps
+
+  # Hybrid mode: weighted random selection of providers per video.
+  # Higher weight = more likely to be picked first.
+  hybrid_providers:
+    - provider: "ai_images"    # AI-generated images + Ken Burns animation (free)
+      weight: 50
+    - provider: "hf_inference" # AI video generation (may require credits)
+      weight: 20
+    - provider: "pexels"       # Stock footage with glitch overlay (always free)
+      weight: 30
+
+  # AI image generation — free via HF Inference (text_to_image)
+  ai_images:
+    models:
+      - "black-forest-labs/FLUX.1-schnell"       # fast, high quality
+      - "stabilityai/stable-diffusion-xl-base-1.0" # fallback
+    num_images: 4           # images per video (each ~3 s of animation)
+    width: 576              # portrait 9:16
+    height: 1024
+    duration_per_image: 3.0 # seconds of Ken Burns animation per image
 
   # HF Inference Providers — serverless AI video via fal-ai / Replicate / etc.
   # Routed through HuggingFace using HF_TOKEN. Free monthly credits.

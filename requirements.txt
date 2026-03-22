@@ -19,6 +19,9 @@ anyio>=4.4.0
 huggingface-hub>=0.25.0
 gradio-client>=1.0.0
 
+# Image handling (text_to_image returns PIL objects)
+Pillow>=10.0.0
+
 # Prompt management / utilities
 python-dateutil>=2.9.0
 
