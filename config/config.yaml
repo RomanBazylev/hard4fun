@@ -154,7 +154,7 @@ youtube:
 # -----------------------------------------------------------------------------
 prompts:
   ideas_file: "prompts/ideas.json"
-  daily_count: 10            # how many new ideas to generate per day
+  daily_count: 15            # comedy ideas per run (grows pool faster than 4 consumed)
   ai_provider: "gemini"      # options: gemini | grok | openai | none
   gemini:
     model: "gemini-2.0-flash"

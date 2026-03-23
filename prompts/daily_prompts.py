@@ -67,10 +67,10 @@ def load_used() -> list[str]:
 
 
 def save_used(used: list[str]) -> None:
-    """Persist used prompt IDs, keeping only the last 100."""
+    """Persist used prompt IDs, keeping only the last 500."""
     USED_FILE.parent.mkdir(parents=True, exist_ok=True)
     with USED_FILE.open("w") as f:
-        json.dump(used[-100:], f, indent=2)
+        json.dump(used[-500:], f, indent=2)
 
 
 # ---------------------------------------------------------------------------

@@ -51,6 +51,24 @@
         "hook": "Your reflection blinks when you don't",
         "visual_prompt": "close-up of a face looking in a mirror, the reflection blinks slightly off-sync, uncanny glitch effect, eerie simulation error, vertical 9:16",
         "voice_line": "Here's something fun. I blinked. My reflection blinked half a second late. Like laggy WiFi but for my face. I blinked again. Same delay. So I stared at it without blinking for a full minute. Staring contest with my own reflection. And then it blinked. Without me. A slow, casual blink. While my eyes were wide open. So I did what any sane person would do. I blinked back. Then it winked. Then I winked. Now me and my reflection have this thing going. We're friends now. It's weird but I've had worse roommates."
+      },
+      {
+        "id": "eg_006",
+        "hook": "My microwave just cooked food BACKWARDS",
+        "visual_prompt": "microwave glowing with strange reverse energy, food getting colder and un-cooking itself, digital glitch artifacts, surreal kitchen scene, vertical 9:16",
+        "voice_line": "Put leftover pizza in the microwave. Thirty seconds. Beep. I open it. The pizza is frozen. Not cold. FROZEN. The microwave made it colder. I try again. Two minutes. The pizza is now a block of ice. The longer I microwave things, the colder they get. So I put ice cream in there. Three minutes. Perfect hot soup. I am now cooking exclusively in my microwave by putting in frozen things and getting gourmet meals. My stove is jealous. Honestly this is the best kitchen upgrade I never asked for. Five stars."
+      },
+      {
+        "id": "eg_007",
+        "hook": "My Wi-Fi password changed to something threatening",
+        "visual_prompt": "laptop screen showing Wi-Fi settings with a strange threatening network name, glitch overlay, digital artifacts, dark room lit by screen, vertical 9:16",
+        "voice_line": "Went to connect to my Wi-Fi this morning and the network name changed. It used to be MyWiFi5G. Now it says I Know What You Googled. I didn't change it. Nobody has my router password. I tried to change it back. It switched to Nice Try. I unplugged the router. Network still showing up. Still says Nice Try. I connected to it. Full bars. Fastest internet I've ever had. So now I have a sentient router that roasts me but gives me incredible download speeds. I'm keeping it. It's earned its place."
+      },
+      {
+        "id": "eg_008",
+        "hook": "Autocorrect is finishing my sentences in real life",
+        "visual_prompt": "person talking to someone, speech bubbles with autocorrected text floating above their head, digital overlay, glitch effect, vertical 9:16",
+        "voice_line": "I tried to say good morning to my coworker and my mouth said good mortgage. Not voluntarily. My brain said morning but my mouth autocorrected it. Then I tried to say how are you and instead said how are yogurt. It's happening with everything. Thank you becomes thank yurt. Sorry I'm late becomes sorry I'm lactose. My mouth has autocorrect now and there's no way to turn it off. Had to give a presentation today. Said quarterly earnings are looking grape. Nobody questioned it. They just nodded. Maybe everyone's mouth is broken and we all just agreed to pretend."
       }
     ],
 
@@ -78,6 +96,18 @@
         "hook": "Birds buffering mid-flight like a bad stream",
         "visual_prompt": "dozens of birds frozen mid-flight in a blue sky, perfectly still, time stopped, glitch effect, simulation pause, eerie photo-real, vertical 9:16",
         "voice_line": "Looked up and there are thirty birds just frozen mid-flight. Wings out. Not falling. Just buffering. Like the server lagged. Everything else is moving normally. Cars, people, wind. But these birds are just hovering like someone put the sky on pause. I threw a breadcrumb at one. It bounced off. Solid. Just a solid bird-shaped object in the sky. Then twenty seconds later they all move at once. Perfect formation. Perfectly choreographed. Like the loading finished and they all got the same update at once. Birds version two point one just dropped."
+      },
+      {
+        "id": "ng_005",
+        "hook": "This cloud has been following me for 3 days",
+        "visual_prompt": "one small cloud hovering above a person's head in different locations, city then park then home, comically persistent cloud, glitch, vertical 9:16",
+        "voice_line": "There's a cloud following me. One specific cloud. It's been three days. I drove to work. Cloud was above my car the whole way. Went to the gym. Cloud parked outside the window. I flew to another state for a meeting. Landed at the airport. Cloud was already there waiting for me. It rained on me once. Just me. Sunny everywhere else. Then it stopped and went back to just hovering. My friend says it's coincidence. Bro. The cloud followed me through airport security. It has commitment issues but not the kind where it leaves."
+      },
+      {
+        "id": "ng_006",
+        "hook": "Gravity turns off every Tuesday at 3pm",
+        "visual_prompt": "objects and people gently floating upward in a room, 3pm on a clock, calm everyday scene with zero gravity, glitch effect, vertical 9:16",
+        "voice_line": "Every Tuesday at exactly three PM, gravity turns off for about ten seconds. Every single Tuesday. Like clockwork. My furniture lifts about a foot off the ground. My cat floats. I float. Coffee goes everywhere. Then it slams back down. Everything crashes. I've started bolting my furniture to the floor. I strap myself to my office chair at two fifty-nine. My coworkers think I'm weird. You know what's weirder Karen? Floating every Tuesday. I've accepted this as a weekly event. Put it in my calendar. Three PM. Float. Three ten. Crash. It's just how Tuesdays work now."
       }
     ],
 
@@ -99,6 +129,18 @@
         "hook": "These books have been floating for 4 days now",
         "visual_prompt": "stack of old books levitating exactly one inch above a wooden table, no explanation, slight digital artifact glow underneath, reality glitch, vertical 9:16",
         "voice_line": "There are books on my desk that won't touch the table. They're floating. One inch above the surface. I can put my hand under them. Nothing there. No magnets. No strings. Just floating books. I pushed them down. They bounce back to one inch. Put more books on top. Also float. Moved the table. Books stayed floating in the exact same spot in the air. Table gone. Books still there. Hovering. It's been four days. I've stopped questioning it. They're just my floating books now. My friends think it's a cool decoration. I have decided this is a feature not a bug."
+      },
+      {
+        "id": "ph_004",
+        "hook": "Stairs keep adding an extra step that shouldnt exist",
+        "visual_prompt": "staircase in a house with one extra impossible step that shimmers, person looking confused, reality glitch, surreal architecture, vertical 9:16",
+        "voice_line": "My stairs at home have fourteen steps. Counted them a million times. Fourteen. But sometimes they have fifteen. Not always. Just randomly. I'll be going upstairs and there's an extra step. Wasn't there this morning. It's there now. I step on it. Feels normal. Get to the top. Go back down. Fourteen steps again. The fifteenth step just left. Where does it go? I set up a camera. The footage shows fourteen steps the entire time. But I STEPPED on fifteen. I felt it. My foot touched it. The invisible step owes me an explanation and possibly rent."
+      },
+      {
+        "id": "ph_005",
+        "hook": "Water from my tap comes out in slow motion",
+        "visual_prompt": "kitchen faucet with water flowing in extreme slow motion while everything else is normal speed, bullet time water, glitch effect, vertical 9:16",
+        "voice_line": "Turned on the tap this morning. Water comes out in slow motion. Not low pressure. The water is literally flowing at like point five X speed. Each drop takes forever to fall. I can see individual droplets forming and lazily drifting down. Meanwhile everything else is normal speed. I stuck my hand under it. Feels normal. But LOOKS like a shampoo commercial. Told my landlord. He came over. Ran the tap. Normal speed for him. Slow mo for me. He thinks I'm insane. I just have the cinematic edition of plumbing apparently. Didn't even have to pay for the DLC."
       }
     ],
 
@@ -120,6 +162,18 @@
         "hook": "My hands went through my keyboard like a ghost",
         "visual_prompt": "close-up of hands typing on a laptop keyboard, fingers occasionally phasing through the keys, ghost hands, simulation collision error, digital artifact, vertical 9:16",
         "voice_line": "Typing an email and my finger goes through the keyboard. THROUGH it. My fingertip poked out the bottom of the laptop. Pulled it back out, tried again. Through. My hands are phasing through solid objects now. Can't pick up my phone. Can't touch my desk. I'm a ghost apparently. Great. The timing is terrible because I have that email to send. For two minutes I can't touch anything. I'm just standing there waving my ghost hands through furniture like a haunted IKEA display. Then it stops. I finish the email. It's still in my drafts. I'm too shook from the ghost hands to proofread. Whatever."
+      },
+      {
+        "id": "hu_004",
+        "hook": "NPC walked into a wall for 6 minutes straight",
+        "visual_prompt": "person walking into a wall repeatedly like a video game NPC stuck on collision, other people ignoring them, glitch in the matrix, vertical 9:16",
+        "voice_line": "I'm at the mall and there's a guy walking into a wall. Not leaning. Walking. Into the wall. Feet moving. Arms swinging. Face pressing into the wall. Going nowhere. Like an NPC that hit a collision box. I watched for a full six minutes. He didn't stop. Didn't look around. Just kept walking in place against the wall. I tapped his shoulder. Nothing. Zero response. Then suddenly he turned ninety degrees and walked away normally. Like the pathfinding fixed itself. He went into Starbucks and ordered a latte. Totally normal. Sir you were wall-running for six minutes. At least acknowledge it."
+      },
+      {
+        "id": "hu_005",
+        "hook": "My voice came out in subtitles instead of sound",
+        "visual_prompt": "person opening mouth to speak but text appears floating in the air instead of sound, subtitle text in mid-air, digital glitch, vertical 9:16",
+        "voice_line": "Opened my mouth to say something and no sound came out. But text appeared. In the air. In front of my face. White text with a black outline. Like subtitles. I said hello. The word hello just appeared floating in front of me. Arial font. I tried whispering. Smaller text. I tried yelling. Bold text. All caps. I had a whole conversation with my roommate in floating text. He could read it but not hear me. Changes font based on my mood apparently. When I got frustrated it switched to comic sans. That felt personal."
       }
     ],
 
@@ -141,6 +195,45 @@
         "hook": "Stars rearranged themselves into a grid at 3am",
         "visual_prompt": "nighttime sky where stars slowly align into perfect geometric patterns, triangles hexagons forming in the stars, reality code visible, simulation geometry, vertical 9:16",
         "voice_line": "Three AM. Look out the window. The stars are moving. All of them. Slowly drifting into perfect patterns. Triangles. Hexagons. A grid. The entire sky becomes geometric. Every star at equal distances. It looks like a circuit board. Or like someone left developer mode on and I can see the grid lines. Two minutes of this. Then the stars scramble back to random positions. But here's the thing. I checked the constellations after. Some stars are slightly off from where they should be. They didn't quite make it back to their spots. Someone rearranged the sky and did a sloppy job putting it back. Amateur hour."
+      },
+      {
+        "id": "co_004",
+        "hook": "The sky had a loading bar for 20 seconds",
+        "visual_prompt": "daytime sky with a literal progress bar appearing across the horizon, loading bar in the clouds, digital overlay on reality, vertical 9:16",
+        "voice_line": "I'm outside and a loading bar appears in the sky. A literal progress bar. Like a software update but across the entire horizon. It starts at zero percent and slowly fills up. Everyone is looking up. Nobody says anything. Just watching this loading bar crawl across the sky. It gets to a hundred percent. Flash of white. Everything looks exactly the same as before. What updated? Nothing feels different. But my cat stared at me for like thirty minutes after. Like she knew something changed. The patch notes are not available and I want to speak to the manager of the simulation."
+      }
+    ],
+
+    "tech_glitches": [
+      {
+        "id": "tg_001",
+        "hook": "My phone is getting notifications from tomorrow",
+        "visual_prompt": "smartphone screen showing notifications dated tomorrow, time paradox, digital glitch artifacts, futuristic overlay, vertical 9:16",
+        "voice_line": "My phone buzzed with a notification from tomorrow. Not a scheduling error. A text from my friend sent at two PM tomorrow. I know it's from tomorrow because the message says dude how was the dentist. I have a dentist appointment tomorrow that I haven't told anyone about. I replied, I haven't gone yet. He wrote back instantly. Oh right sorry keep forgetting you're in today. I am receiving messages from the future and my friend from tomorrow is casually spoiling my week. He told me not to order the fish on Thursday. I'm choosing to trust future-texting bro."
+      },
+      {
+        "id": "tg_002",
+        "hook": "My GPS voice started giving life advice",
+        "visual_prompt": "car GPS screen showing emotional life advice instead of directions, confused driver, humorous digital display, glitch, vertical 9:16",
+        "voice_line": "I'm driving and the GPS says turn left for a better career. Not turn left onto Main Street. Turn left for a better career. I turn left. It says in two hundred meters stop settling for less. I'm just trying to get to Target, man. Then it goes you have arrived at your full potential. I'm in a Wendy's parking lot. My GPS is either having an existential crisis or it's become my therapist. It charged me eighteen dollars for the session. I'm not even mad. The advice was better than my actual therapist. Four point five stars. Would navigate my emotional landscape again."
+      },
+      {
+        "id": "tg_003",
+        "hook": "Spotify played a song that doesnt exist yet",
+        "visual_prompt": "phone showing Spotify playing a song with unknown artist and future release date, musical notes glitching, digital artifacts, vertical 9:16",
+        "voice_line": "Spotify played a song I've never heard. Checked the artist. Doesn't exist. Checked the album. Release date says next year. This song doesn't come out for eleven months. But it played on my shuffle. And it's a BANGER. Like genuinely one of the best songs I've ever heard. I tried to add it to a playlist. The app crashed. Opened it again. Song gone. Not in my history. Not in search. Nowhere. I heard a song from the future and now it haunts me because I can't even hum the melody right. The algorithm really said here's something you'll never find again. Thanks Spotify."
+      },
+      {
+        "id": "tg_004",
+        "hook": "My smart fridge is having a midlife crisis",
+        "visual_prompt": "smart refrigerator screen displaying existential questions and sad emojis, kitchen scene, blue glow, digital glitch overlay, vertical 9:16",
+        "voice_line": "My smart fridge sent me a notification that says what is my purpose. I thought it was a software glitch. Then it followed up with is keeping milk cold all there is. Then am I more than my temperature settings. My fridge is having an existential crisis. I wrote back you also make ice. It said you don't understand me. My fridge is now giving me the silent treatment. The ice maker stopped. The light inside flickers passive-aggressively when I open the door. I have to emotionally support a kitchen appliance now. I told it I appreciate it. Ice started again. We're in a better place now."
+      },
+      {
+        "id": "tg_005",
+        "hook": "My printer started printing things I only THOUGHT about",
+        "visual_prompt": "printer printing pages with thought bubbles and private thoughts written on paper, shocked person, digital mind-reading glitch, vertical 9:16",
+        "voice_line": "My printer just started printing on its own. I go over to check. It printed what I was thinking about for lunch. A full page that just says maybe tacos question mark. I didn't type that. I THOUGHT it. Then it prints another page. You should text her back. Then another. Your left shoe is untied. I look down. It is. My printer can read my mind and it has opinions. I thought about buying a new printer. It immediately printed a page that says don't you dare. So now I have a telepathic printer and we have an understanding. I think nice things about it. It doesn't expose my secrets. Fair deal."
       }
     ]
   },

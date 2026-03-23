@@ -222,14 +222,14 @@ def run_pipeline(count: int = 4, dry_run: bool = False, refresh_ideas: bool = Fa
     log_file = setup_log_file()
     config = load_config()
 
-    # Optionally refresh AI ideas
-    if refresh_ideas:
-        log.info("Refreshing AI ideas via Gemini …")
-        from prompts.daily_prompts import generate_ai_ideas, save_ai_ideas
+    # Always generate fresh AI ideas to keep the pool growing
+    log.info("Generating fresh AI ideas via Gemini …")
+    from prompts.daily_prompts import generate_ai_ideas, save_ai_ideas
 
-        new_ideas = generate_ai_ideas(count=config["prompts"]["daily_count"])
-        if not dry_run:
-            save_ai_ideas(new_ideas)
+    new_ideas = generate_ai_ideas(count=config["prompts"]["daily_count"])
+    if new_ideas and not dry_run:
+        save_ai_ideas(new_ideas)
+        log.info("✓ Added %d new ideas to the pool.", len(new_ideas))
 
     # Select today's prompts
     from prompts.daily_prompts import select_daily_prompts
