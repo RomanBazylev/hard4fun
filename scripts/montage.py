@@ -258,19 +258,20 @@ def _build_karaoke_filter(
         chunk_text = " ".join(w["word"] for w in chunk)
         escaped_chunk = _escape_drawtext(chunk_text)
 
+        # Base layer: full chunk text in solid white at the bottom
         filters.append(
             f"drawtext=text='{escaped_chunk}'"
             f":fontfile='{font_path}'"
             f":fontsize={fontsize}"
-            f":fontcolor={fontcolor}@0.6"
+            f":fontcolor={fontcolor}"
             f":bordercolor={outline_color}"
-            f":borderw={outline_w}"
+            f":borderw={outline_w + 1}"
             f":x=(w-text_w)/2"
-            f":y='min(h*0.70, h-text_h-40)'"
+            f":y='h-text_h-60'"
             f":enable='between(t,{chunk_start:.3f},{chunk_end:.3f})'"
         )
 
-        # Highlight layer: current word in yellow, slightly larger, above base
+        # Highlight layer: current word in yellow, larger, above base line
         for wt in chunk:
             escaped_word = _escape_drawtext(wt["word"])
             w_start = wt["start"]
@@ -279,12 +280,12 @@ def _build_karaoke_filter(
             filters.append(
                 f"drawtext=text='{escaped_word}'"
                 f":fontfile='{font_path}'"
-                f":fontsize={int(fontsize * 1.15)}"
+                f":fontsize={int(fontsize * 1.2)}"
                 f":fontcolor={highlight_color}"
                 f":bordercolor={outline_color}"
-                f":borderw={outline_w + 1}"
+                f":borderw={outline_w + 2}"
                 f":x=(w-text_w)/2"
-                f":y='min(h*0.70, h-text_h-40)-{fontsize + 10}'"
+                f":y='h-text_h-60-{fontsize + 14}'"
                 f":enable='between(t,{w_start:.3f},{w_end:.3f})'"
             )
 
@@ -333,9 +334,9 @@ def _build_static_subtitle(
         f":fontsize={fontsize}"
         f":fontcolor={fontcolor}"
         f":bordercolor={outline_color}"
-        f":borderw={outline_w}"
+        f":borderw={outline_w + 1}"
         f":x=(w-text_w)/2"
-        f":y='min(h*0.70, h-text_h-40)'"
+        f":y='h-text_h-60'"
         f":enable='between(t,0,{video_duration})'"
     )
 

@@ -699,15 +699,21 @@ def generate_video(
                     continue
                 tried.add(name)
                 log.info("Hybrid strategy: trying provider '%s'", name)
-                if PROVIDERS[name](prompt, config, output_path):
-                    return True
+                try:
+                    if PROVIDERS[name](prompt, config, output_path):
+                        return True
+                except Exception as exc:
+                    log.error("Provider '%s' raised: %s", name, exc)
                 log.warning("Hybrid provider '%s' failed.", name)
 
             # Ultimate fallback
             if fallback and fallback not in tried and fallback in PROVIDERS:
                 log.warning("Hybrid exhausted — trying fallback '%s'", fallback)
-                if PROVIDERS[fallback](prompt, config, output_path):
-                    return True
+                try:
+                    if PROVIDERS[fallback](prompt, config, output_path):
+                        return True
+                except Exception as exc:
+                    log.error("Fallback '%s' raised: %s", fallback, exc)
 
             log.error("All hybrid providers exhausted.")
             return False
