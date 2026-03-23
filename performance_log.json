@@ -10,7 +10,7 @@
         "views": 3,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T08:30:51.489564+00:00"
+        "fetched_at": "2026-03-23T09:04:53.740414+00:00"
       }
     },
     {
@@ -23,7 +23,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T08:30:51.489564+00:00"
+        "fetched_at": "2026-03-23T09:04:53.740414+00:00"
       }
     },
     {
@@ -36,7 +36,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T08:30:51.489564+00:00"
+        "fetched_at": "2026-03-23T09:04:53.740414+00:00"
       }
     },
     {
@@ -49,7 +49,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T08:30:51.489564+00:00"
+        "fetched_at": "2026-03-23T09:04:53.740414+00:00"
       }
     },
     {
@@ -62,7 +62,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T08:30:51.489564+00:00"
+        "fetched_at": "2026-03-23T09:04:53.740414+00:00"
       }
     },
     {
@@ -75,7 +75,7 @@
         "views": 6,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T08:30:51.489564+00:00"
+        "fetched_at": "2026-03-23T09:04:53.740414+00:00"
       }
     },
     {
@@ -84,6 +84,19 @@
       "topic": "human_glitches",
       "tags": [],
       "uploaded_at": "2026-03-23T08:34:06.781296+00:00",
+      "stats": {
+        "views": 1,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-03-23T09:04:53.740414+00:00"
+      }
+    },
+    {
+      "video_id": "BnNqO58NBgc",
+      "title": "Spotify played a song that doesnt exist yet",
+      "topic": "tech_glitches",
+      "tags": [],
+      "uploaded_at": "2026-03-23T09:06:40.522378+00:00",
       "stats": null
     }
   ]
