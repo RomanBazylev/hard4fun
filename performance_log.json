@@ -7,10 +7,10 @@
       "tags": [],
       "uploaded_at": "2026-03-22T18:47:33.632230+00:00",
       "stats": {
-        "views": 3,
+        "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T09:04:53.740414+00:00"
+        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
       }
     },
     {
@@ -23,7 +23,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T09:04:53.740414+00:00"
+        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
       }
     },
     {
@@ -36,7 +36,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T09:04:53.740414+00:00"
+        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
       }
     },
     {
@@ -49,7 +49,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T09:04:53.740414+00:00"
+        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
       }
     },
     {
@@ -62,7 +62,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T09:04:53.740414+00:00"
+        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
       }
     },
     {
@@ -72,10 +72,10 @@
       "tags": [],
       "uploaded_at": "2026-03-23T08:04:10.305447+00:00",
       "stats": {
-        "views": 6,
+        "views": 7,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T09:04:53.740414+00:00"
+        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
       }
     },
     {
@@ -85,10 +85,10 @@
       "tags": [],
       "uploaded_at": "2026-03-23T08:34:06.781296+00:00",
       "stats": {
-        "views": 1,
+        "views": 2,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T09:04:53.740414+00:00"
+        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
       }
     },
     {
@@ -97,6 +97,19 @@
       "topic": "tech_glitches",
       "tags": [],
       "uploaded_at": "2026-03-23T09:06:40.522378+00:00",
+      "stats": {
+        "views": 2,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
+      }
+    },
+    {
+      "video_id": "VriT-RvHZ3Q",
+      "title": "When your coffee pours upward instead of down",
+      "topic": "everyday_glitches",
+      "tags": [],
+      "uploaded_at": "2026-03-23T14:51:57.694882+00:00",
       "stats": null
     }
   ]
