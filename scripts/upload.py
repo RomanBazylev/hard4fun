@@ -126,12 +126,12 @@ bro the simulation is NOT okay today 💀
 
 we post daily glitches because clearly the devs don't do QA
 
-📌 more glitches: https://www.youtube.com/@GlitchRealityAI/shorts
+📌 more videos: https://www.youtube.com/@Hard4Fun/shorts
 🔔 subscribe before the matrix patches this 👀
 
 {hashtags}
 
-#GlitchRealityAI #SimulationGlitch #RealityGlitch #Shorts
+#Hard4Fun #SimulationGlitch #RealityGlitch #Shorts
 """
 
 

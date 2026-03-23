@@ -166,8 +166,8 @@ jobs:
       - name: Commit updated prompts database
         if: always()
         run: |
-          git config user.name "GlitchRealityAI Bot"
-          git config user.email "bot@glitchrealityai"
+          git config user.name "Hard4Fun Bot"
+          git config user.email "bot@hard4fun"
           git add prompts/ideas.json logs/used_prompts.json performance_log.json 2>/dev/null || true
           git diff --cached --quiet || git commit -m "chore: update prompts + analytics [skip ci]"
           git push || true  # Don't fail the job if push fails

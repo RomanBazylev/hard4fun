@@ -5,8 +5,8 @@
 # See README.md → "Upgrading to Paid APIs" for step-by-step instructions.
 
 channel:
-  name: "GlitchRealityAI"
-  niche: "Glitch in Reality / Absurd Comedy / Brainrot Humor"
+  name: "Hard4Fun"
+  niche: "Comedy / Absurd Humor / Brainrot / Glitches in Reality"
   language: "en"
   daily_videos: 4          # how many Shorts to produce per run (3–5)
   video_duration_min: 20   # seconds
@@ -129,12 +129,13 @@ youtube:
   made_for_kids: false
   default_tags:
     - "shorts"
-    - "glitch"
+    - "hard4fun"
     - "comedy"
     - "funny"
     - "brainrot"
     - "meme"
     - "humor"
+    - "glitch"
     - "simulationglitch"
     - "glitchinthematrix"
     - "realityglitch"
@@ -146,7 +147,6 @@ youtube:
     - "aicomedy"
     - "deadpan"
     - "absurd"
-    - "glitcheffect"
     - "mindblowing"
 
 # -----------------------------------------------------------------------------

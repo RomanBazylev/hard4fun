@@ -131,7 +131,7 @@ def select_daily_prompts(count: int = 4) -> list[dict[str, Any]]:
 # AI-powered idea generation (Gemini free tier)
 # ---------------------------------------------------------------------------
 
-GEMINI_SYSTEM = """You are a comedy writer for a viral YouTube Shorts channel called GlitchRealityAI.
+GEMINI_SYSTEM = """You are a comedy writer for a viral YouTube Shorts channel called Hard4Fun.
 You create "glitch in reality" stories — first-person narratives about hilariously impossible things happening in everyday life.
 The style is comedy storytelling with deadpan delivery: the narrator describes something absurd that happened to them, building up the absurdity, then ending with a hilarious punchline.
 Think of it like a stand-up bit meets r/Glitch_in_the_Matrix — the absurdity IS the joke. The narrator treats insane situations with casual acceptance, which makes it funnier.
