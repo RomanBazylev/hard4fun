@@ -10,7 +10,7 @@
         "views": 3,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T02:28:09.217517+00:00"
+        "fetched_at": "2026-03-23T07:59:02.878894+00:00"
       }
     },
     {
@@ -19,7 +19,12 @@
       "topic": "physics_glitches",
       "tags": [],
       "uploaded_at": "2026-03-23T02:30:16.987369+00:00",
-      "stats": null
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-03-23T07:59:02.878894+00:00"
+      }
     },
     {
       "video_id": "RFNocHcgndU",
@@ -27,7 +32,12 @@
       "topic": "physics_glitches",
       "tags": [],
       "uploaded_at": "2026-03-23T02:33:57.299727+00:00",
-      "stats": null
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-03-23T07:59:02.878894+00:00"
+      }
     },
     {
       "video_id": "sTxBprLO6i8",
@@ -35,7 +45,12 @@
       "topic": "nature_glitches",
       "tags": [],
       "uploaded_at": "2026-03-23T02:36:07.577156+00:00",
-      "stats": null
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-03-23T07:59:02.878894+00:00"
+      }
     },
     {
       "video_id": "nI18KG4TnTM",
@@ -43,6 +58,19 @@
       "topic": "human_glitches",
       "tags": [],
       "uploaded_at": "2026-03-23T02:38:15.572559+00:00",
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-03-23T07:59:02.878894+00:00"
+      }
+    },
+    {
+      "video_id": "5hVIB-KIpKM",
+      "title": "Rain going up but only in this one specific spot",
+      "topic": "nature_glitches",
+      "tags": [],
+      "uploaded_at": "2026-03-23T08:04:10.305447+00:00",
       "stats": null
     }
   ]
