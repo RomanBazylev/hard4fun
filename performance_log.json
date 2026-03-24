@@ -10,7 +10,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
+        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
       }
     },
     {
@@ -23,7 +23,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
+        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
       }
     },
     {
@@ -36,7 +36,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
+        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
       }
     },
     {
@@ -49,7 +49,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
+        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
       }
     },
     {
@@ -62,7 +62,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
+        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
       }
     },
     {
@@ -75,7 +75,7 @@
         "views": 7,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
+        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
       }
     },
     {
@@ -88,7 +88,7 @@
         "views": 2,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
+        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
       }
     },
     {
@@ -101,7 +101,7 @@
         "views": 2,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-23T14:48:33.345962+00:00"
+        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
       }
     },
     {
@@ -110,6 +110,43 @@
       "topic": "everyday_glitches",
       "tags": [],
       "uploaded_at": "2026-03-23T14:51:57.694882+00:00",
+      "stats": {
+        "views": 217,
+        "likes": 1,
+        "comments": 0,
+        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
+      }
+    },
+    {
+      "video_id": "-dcuyYuUYgw",
+      "title": "These books have been floating for 4 days now",
+      "topic": "physics_glitches",
+      "tags": [],
+      "uploaded_at": "2026-03-24T02:15:32.755231+00:00",
+      "stats": null
+    },
+    {
+      "video_id": "l2HklvoDZyU",
+      "title": "The moon is rendering at 12 pixels tonight",
+      "topic": "cosmic_glitches",
+      "tags": [],
+      "uploaded_at": "2026-03-24T02:17:31.179183+00:00",
+      "stats": null
+    },
+    {
+      "video_id": "899FUs2RDRM",
+      "title": "The moment the sky loads the wrong texture",
+      "topic": "everyday_glitches",
+      "tags": [],
+      "uploaded_at": "2026-03-24T02:19:34.191523+00:00",
+      "stats": null
+    },
+    {
+      "video_id": "oD_Tnv2z2_Q",
+      "title": "Stairs keep adding an extra step that shouldnt exist",
+      "topic": "physics_glitches",
+      "tags": [],
+      "uploaded_at": "2026-03-24T02:22:14.052675+00:00",
       "stats": null
     }
   ]
