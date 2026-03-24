@@ -10,7 +10,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
+        "fetched_at": "2026-03-24T14:51:00.092786+00:00"
       }
     },
     {
@@ -23,7 +23,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
+        "fetched_at": "2026-03-24T14:51:00.092786+00:00"
       }
     },
     {
@@ -36,7 +36,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
+        "fetched_at": "2026-03-24T14:51:00.092786+00:00"
       }
     },
     {
@@ -49,7 +49,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
+        "fetched_at": "2026-03-24T14:51:00.092786+00:00"
       }
     },
     {
@@ -62,7 +62,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
+        "fetched_at": "2026-03-24T14:51:00.092786+00:00"
       }
     },
     {
@@ -75,7 +75,7 @@
         "views": 7,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
+        "fetched_at": "2026-03-24T14:51:00.092786+00:00"
       }
     },
     {
@@ -88,7 +88,7 @@
         "views": 2,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
+        "fetched_at": "2026-03-24T14:51:00.092786+00:00"
       }
     },
     {
@@ -101,7 +101,7 @@
         "views": 2,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
+        "fetched_at": "2026-03-24T14:51:00.092786+00:00"
       }
     },
     {
@@ -111,10 +111,10 @@
       "tags": [],
       "uploaded_at": "2026-03-23T14:51:57.694882+00:00",
       "stats": {
-        "views": 217,
+        "views": 218,
         "likes": 1,
         "comments": 0,
-        "fetched_at": "2026-03-24T02:13:09.930053+00:00"
+        "fetched_at": "2026-03-24T14:51:00.092786+00:00"
       }
     },
     {
@@ -123,7 +123,12 @@
       "topic": "physics_glitches",
       "tags": [],
       "uploaded_at": "2026-03-24T02:15:32.755231+00:00",
-      "stats": null
+      "stats": {
+        "views": 1,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-03-24T14:51:00.092786+00:00"
+      }
     },
     {
       "video_id": "l2HklvoDZyU",
@@ -131,7 +136,12 @@
       "topic": "cosmic_glitches",
       "tags": [],
       "uploaded_at": "2026-03-24T02:17:31.179183+00:00",
-      "stats": null
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-03-24T14:51:00.092786+00:00"
+      }
     },
     {
       "video_id": "899FUs2RDRM",
@@ -139,7 +149,12 @@
       "topic": "everyday_glitches",
       "tags": [],
       "uploaded_at": "2026-03-24T02:19:34.191523+00:00",
-      "stats": null
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-03-24T14:51:00.092786+00:00"
+      }
     },
     {
       "video_id": "oD_Tnv2z2_Q",
@@ -147,6 +162,43 @@
       "topic": "physics_glitches",
       "tags": [],
       "uploaded_at": "2026-03-24T02:22:14.052675+00:00",
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-03-24T14:51:00.092786+00:00"
+      }
+    },
+    {
+      "video_id": "z0oxWxB_bAw",
+      "title": "My GPS voice started giving life advice",
+      "topic": "tech_glitches",
+      "tags": [],
+      "uploaded_at": "2026-03-24T14:52:52.127344+00:00",
+      "stats": null
+    },
+    {
+      "video_id": "mJAtH30suIk",
+      "title": "My phone is getting notifications from tomorrow",
+      "topic": "tech_glitches",
+      "tags": [],
+      "uploaded_at": "2026-03-24T14:54:30.228323+00:00",
+      "stats": null
+    },
+    {
+      "video_id": "qhBEYuUsI8I",
+      "title": "The sky had a loading bar for 20 seconds",
+      "topic": "cosmic_glitches",
+      "tags": [],
+      "uploaded_at": "2026-03-24T14:56:29.021985+00:00",
+      "stats": null
+    },
+    {
+      "video_id": "ZjGR-bW0wrU",
+      "title": "Sun rose twice and nobody said anything",
+      "topic": "cosmic_glitches",
+      "tags": [],
+      "uploaded_at": "2026-03-24T14:59:50.357142+00:00",
       "stats": null
     }
   ]
