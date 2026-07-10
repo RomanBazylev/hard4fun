@@ -1,58 +1,6 @@
 {
   "videos": [
     {
-      "video_id": "paeluddJyuw",
-      "title": "Your reflection blinks when you don't",
-      "topic": "everyday_glitches",
-      "tags": [],
-      "uploaded_at": "2026-06-14T15:52:24.893936+00:00",
-      "stats": {
-        "views": 0,
-        "likes": 0,
-        "comments": 0,
-        "fetched_at": "2026-06-21T15:43:16.217413+00:00"
-      }
-    },
-    {
-      "video_id": "sPvW5FahWCI",
-      "title": "My voice came out in subtitles instead of sound",
-      "topic": "human_glitches",
-      "tags": [],
-      "uploaded_at": "2026-06-15T04:27:38.531337+00:00",
-      "stats": {
-        "views": 0,
-        "likes": 0,
-        "comments": 0,
-        "fetched_at": "2026-06-22T04:23:16.597575+00:00"
-      }
-    },
-    {
-      "video_id": "1VCoYF30UhA",
-      "title": "Tree hit ctrl+Z and un-grew itself",
-      "topic": "nature_glitches",
-      "tags": [],
-      "uploaded_at": "2026-06-15T04:29:59.239622+00:00",
-      "stats": {
-        "views": 0,
-        "likes": 0,
-        "comments": 0,
-        "fetched_at": "2026-06-22T04:23:16.597575+00:00"
-      }
-    },
-    {
-      "video_id": "bZJkaexKGnE",
-      "title": "My Wi-Fi password changed to something threatening",
-      "topic": "everyday_glitches",
-      "tags": [],
-      "uploaded_at": "2026-06-15T04:31:48.295292+00:00",
-      "stats": {
-        "views": 1,
-        "likes": 0,
-        "comments": 0,
-        "fetched_at": "2026-06-22T04:23:16.597575+00:00"
-      }
-    },
-    {
       "video_id": "Ext2XCegw6Y",
       "title": "Spotify played a song that doesnt exist yet",
       "topic": "tech_glitches",
@@ -1882,7 +1830,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -1895,7 +1843,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -1908,7 +1856,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -1921,7 +1869,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -1934,7 +1882,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -1947,7 +1895,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -1960,7 +1908,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -1973,7 +1921,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -1986,7 +1934,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -1999,7 +1947,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2012,7 +1960,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2025,7 +1973,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2038,7 +1986,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2051,7 +1999,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2064,7 +2012,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2077,7 +2025,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2090,7 +2038,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2103,7 +2051,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2116,7 +2064,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2129,7 +2077,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2142,7 +2090,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2155,7 +2103,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2168,7 +2116,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2181,7 +2129,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2194,7 +2142,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2207,7 +2155,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2220,7 +2168,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2233,7 +2181,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2246,7 +2194,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2259,7 +2207,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2272,7 +2220,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2285,7 +2233,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2298,7 +2246,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2311,7 +2259,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2324,7 +2272,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2337,7 +2285,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2350,7 +2298,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2363,7 +2311,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2376,7 +2324,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2389,7 +2337,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2402,7 +2350,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2415,7 +2363,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2428,7 +2376,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2441,7 +2389,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2454,7 +2402,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2467,7 +2415,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2480,7 +2428,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2493,7 +2441,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2506,7 +2454,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2519,7 +2467,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2532,7 +2480,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2545,7 +2493,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-07-09T16:19:59.330294+00:00"
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
       }
     },
     {
@@ -2554,7 +2502,12 @@
       "topic": "everyday_glitches",
       "tags": [],
       "uploaded_at": "2026-07-09T16:21:43.586154+00:00",
-      "stats": null
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
+      }
     },
     {
       "video_id": "ZJ8ak4ehe1U",
@@ -2562,7 +2515,12 @@
       "topic": "everyday_glitches",
       "tags": [],
       "uploaded_at": "2026-07-09T16:23:44.249675+00:00",
-      "stats": null
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
+      }
     },
     {
       "video_id": "l2CFQRqPzjE",
@@ -2570,7 +2528,12 @@
       "topic": "nature_glitches",
       "tags": [],
       "uploaded_at": "2026-07-09T16:26:28.558817+00:00",
-      "stats": null
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
+      }
     },
     {
       "video_id": "Am62-VMxVz0",
@@ -2578,6 +2541,43 @@
       "topic": "cosmic_glitches",
       "tags": [],
       "uploaded_at": "2026-07-09T16:29:04.710011+00:00",
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-07-10T03:26:58.875593+00:00"
+      }
+    },
+    {
+      "video_id": "jhbx6Tc8Rwo",
+      "title": "Car going forward but wheels spinning backwards",
+      "topic": "physics_glitches",
+      "tags": [],
+      "uploaded_at": "2026-07-10T03:29:51.053804+00:00",
+      "stats": null
+    },
+    {
+      "video_id": "9cAh2TsMq4M",
+      "title": "This cloud has been following me for 3 days",
+      "topic": "nature_glitches",
+      "tags": [],
+      "uploaded_at": "2026-07-10T03:31:40.353726+00:00",
+      "stats": null
+    },
+    {
+      "video_id": "a9dhi0IRIg8",
+      "title": "When your shadow just leaves without you",
+      "topic": "everyday_glitches",
+      "tags": [],
+      "uploaded_at": "2026-07-10T03:33:54.612168+00:00",
+      "stats": null
+    },
+    {
+      "video_id": "QxAarI0gM4M",
+      "title": "The sky had a loading bar for 20 seconds",
+      "topic": "cosmic_glitches",
+      "tags": [],
+      "uploaded_at": "2026-07-10T03:36:08.298153+00:00",
       "stats": null
     }
   ]
