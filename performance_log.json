@@ -1,58 +1,6 @@
 {
   "videos": [
     {
-      "video_id": "1WZTI-fd-2k",
-      "title": "These books have been floating for 4 days now",
-      "topic": "physics_glitches",
-      "tags": [],
-      "uploaded_at": "2026-09-21T19:00:27.982172+00:00",
-      "stats": {
-        "views": 0,
-        "likes": 0,
-        "comments": 0,
-        "fetched_at": "2026-09-28T04:09:15.068694+00:00"
-      }
-    },
-    {
-      "video_id": "FMddpho30KI",
-      "title": "Mirror shows you from 5 seconds in the future",
-      "topic": "everyday_glitches",
-      "tags": [],
-      "uploaded_at": "2026-09-21T19:02:27.445899+00:00",
-      "stats": {
-        "views": 0,
-        "likes": 0,
-        "comments": 0,
-        "fetched_at": "2026-09-28T04:09:15.068694+00:00"
-      }
-    },
-    {
-      "video_id": "fllRQtK27bc",
-      "title": "My smart fridge is having a midlife crisis",
-      "topic": "tech_glitches",
-      "tags": [],
-      "uploaded_at": "2026-09-21T19:04:19.179208+00:00",
-      "stats": {
-        "views": 0,
-        "likes": 0,
-        "comments": 0,
-        "fetched_at": "2026-09-28T04:09:15.068694+00:00"
-      }
-    },
-    {
-      "video_id": "eSLS0mrmUXI",
-      "title": "This cloud has been following me for 3 days",
-      "topic": "nature_glitches",
-      "tags": [],
-      "uploaded_at": "2026-09-21T19:06:09.112777+00:00",
-      "stats": {
-        "views": 0,
-        "likes": 0,
-        "comments": 0,
-        "fetched_at": "2026-09-28T04:09:15.068694+00:00"
-      }
-    },
-    {
       "video_id": "SlS10thrDdA",
       "title": "Autocorrect is finishing my sentences in real life",
       "topic": "everyday_glitches",
@@ -2077,7 +2025,7 @@
         "views": 1,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2090,7 +2038,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2103,7 +2051,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2116,7 +2064,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2129,7 +2077,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2142,7 +2090,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2155,7 +2103,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2168,7 +2116,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2181,7 +2129,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2194,7 +2142,7 @@
         "views": 1,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2207,7 +2155,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2220,7 +2168,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2233,7 +2181,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2246,7 +2194,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2259,7 +2207,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2272,7 +2220,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2285,7 +2233,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2298,7 +2246,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2311,7 +2259,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2324,7 +2272,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2337,7 +2285,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2350,7 +2298,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2363,7 +2311,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2376,7 +2324,7 @@
         "views": 1,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2389,7 +2337,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2402,7 +2350,7 @@
         "views": 3,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2415,7 +2363,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2428,7 +2376,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2441,7 +2389,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2454,7 +2402,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2467,7 +2415,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2480,7 +2428,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2493,7 +2441,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2506,7 +2454,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2519,7 +2467,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2532,7 +2480,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2545,7 +2493,7 @@
         "views": 0,
         "likes": 0,
         "comments": 0,
-        "fetched_at": "2026-10-18T16:59:07.288048+00:00"
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
       }
     },
     {
@@ -2554,7 +2502,12 @@
       "topic": "tech_glitches",
       "tags": [],
       "uploaded_at": "2026-10-18T17:01:07.963150+00:00",
-      "stats": null
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
+      }
     },
     {
       "video_id": "CiRrd9ab9go",
@@ -2562,7 +2515,12 @@
       "topic": "everyday_glitches",
       "tags": [],
       "uploaded_at": "2026-10-18T17:03:16.182597+00:00",
-      "stats": null
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
+      }
     },
     {
       "video_id": "ID0Kt_HStIk",
@@ -2570,7 +2528,12 @@
       "topic": "nature_glitches",
       "tags": [],
       "uploaded_at": "2026-10-18T17:06:02.036938+00:00",
-      "stats": null
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
+      }
     },
     {
       "video_id": "jympewoiyno",
@@ -2578,6 +2541,43 @@
       "topic": "tech_glitches",
       "tags": [],
       "uploaded_at": "2026-10-18T17:09:28.164948+00:00",
+      "stats": {
+        "views": 0,
+        "likes": 0,
+        "comments": 0,
+        "fetched_at": "2026-10-19T03:38:19.936933+00:00"
+      }
+    },
+    {
+      "video_id": "rbv2ZxTrcY8",
+      "title": "These books have been floating for 4 days now",
+      "topic": "physics_glitches",
+      "tags": [],
+      "uploaded_at": "2026-10-19T03:41:07.552557+00:00",
+      "stats": null
+    },
+    {
+      "video_id": "S4pedKKXBnA",
+      "title": "My voice came out in subtitles instead of sound",
+      "topic": "human_glitches",
+      "tags": [],
+      "uploaded_at": "2026-10-19T03:43:54.920647+00:00",
+      "stats": null
+    },
+    {
+      "video_id": "w0eBZBIL59E",
+      "title": "The moon is rendering at 12 pixels tonight",
+      "topic": "cosmic_glitches",
+      "tags": [],
+      "uploaded_at": "2026-10-19T03:45:55.556975+00:00",
+      "stats": null
+    },
+    {
+      "video_id": "ASS6Sowv1oQ",
+      "title": "Spotify played a song that doesnt exist yet",
+      "topic": "tech_glitches",
+      "tags": [],
+      "uploaded_at": "2026-10-19T03:48:00.606868+00:00",
       "stats": null
     }
   ]
